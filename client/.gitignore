@@ -22,3 +22,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+# Flowbite React config (auto-generated)
+.flowbite-react
