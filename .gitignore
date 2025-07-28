@@ -24,3 +24,4 @@ dist-ssr
 *.sw?
 # Flowbite React config (auto-generated)
 .flowbite-react
+.env
