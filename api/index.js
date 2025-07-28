@@ -37,3 +37,14 @@ app.listen(process.env.PORT || 3000, () => {
 //Routs
 app.use("/api/user", UserRoutes);
 app.use("/api/auth", AuthRoutes);
+
+//error middileware
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  const message = err.message || "Middileware error - internal server error ";
+  res.status(statusCode).json({
+    sucess: false,
+    statusCode,
+    message,
+  });
+});
