@@ -2,17 +2,38 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-dotenv.config();
-mongoose
-  .connect(process.env.DBCONNECTION)
-  .then(() => {
-    console.log("database is connected ");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+import { logger } from "./middleware/logger.js";
+
+import UserRoutes from "./routes/user.route.js";
+import AuthRoutes from "./routes/auth.route.js";
+
+// express app
 const app = express();
+dotenv.config();
+
+// logger middleware
+app.use(logger);
+
+//Middleware to parse incoming JSON requests and make data available in req.body
+app.use(express.json());
+
+//connect to db
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => {
+    console.log("connectted to mongo db");
+    app.listen(process.env.PORT, () => {
+      console.log("listening on port", process.env.PORT);
+    });
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 
 app.listen(process.env.PORT || 3000, () => {
   console.log("server is running on post 3000");
 });
+
+//Routs
+app.use("/api/user", UserRoutes);
+app.use("/api/auth", AuthRoutes);
