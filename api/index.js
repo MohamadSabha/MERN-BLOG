@@ -43,7 +43,7 @@ app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
   const message = err.message || "Middileware error - internal server error ";
   res.status(statusCode).json({
-    sucess: false,
+    success: false,
     statusCode,
     message,
   });
