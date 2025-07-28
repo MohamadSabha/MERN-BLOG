@@ -19,7 +19,7 @@ export default function Header() {
         to="/"
         className="self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white"
       >
-        <span className="px-2 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg text-white">
+        <span className="px-2 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-sm text-white">
           MHD's
         </span>
         Blog
@@ -41,20 +41,20 @@ export default function Header() {
           <FaMoon />
         </Button>
         <Link to="/sign-in">
-          <Button className="bg-gradient-to-br from-purple-600 to-blue-500 text-white hover:bg-gradient-to-bl focus:ring-blue-300 dark:focus:ring-blue-800">
+          <Button className="bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:bg-gradient-to-l focus:ring-purple-200 dark:focus:ring-purple-800">
             Sign In
           </Button>
         </Link>
         <NavbarToggle />
       </div>
       <NavbarCollapse>
-        <NavbarLink active={path === "/about"} as={"div"}>
+        <NavbarLink active={path === "/"} as={"div"}>
           <Link to="/">Home</Link>
         </NavbarLink>
-        <NavbarLink active={path === "/about"} as={"div"}>
+        <NavbarLink active={path === "/About"} as={"div"}>
           <Link to="/About">About</Link>
         </NavbarLink>
-        <NavbarLink active={path === "/Projects"} as={"div"}>
+        <NavbarLink active={path === "/projects"} as={"div"}>
           <Link to="/projects">Projects</Link>
         </NavbarLink>
       </NavbarCollapse>
