@@ -10,8 +10,12 @@ import {
 } from "flowbite-react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaMoon, FaSun } from "react-icons/fa";
+import { toggleTheme } from "../redux/theme/themeSlice";
+import { useDispatch } from "react-redux";
 export default function Header() {
   const path = useLocation().pathname;
+
+  const dispatch = useDispatch();
 
   return (
     <Navbar className="border-b-2">
@@ -37,7 +41,12 @@ export default function Header() {
         <AiOutlineSearch />
       </Button>
       <div className="flex gap-2 md:order-2">
-        <Button className="w-12 h-10 hidden sm:inline" color="gray" pill>
+        <Button
+          className="w-12 h-10 hidden sm:inline"
+          color="gray"
+          pill
+          onClick={() => dispatch(toggleTheme())}
+        >
           <FaMoon />
         </Button>
         <Link to="/sign-in">

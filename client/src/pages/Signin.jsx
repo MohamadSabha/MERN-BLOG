@@ -8,6 +8,7 @@ import {
   signinFailure,
 } from "../redux/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
+import OAuth from "../components/OAuth";
 
 export default function Signin() {
   // const [errorMessage, setErrorMessage] = useState(null);
@@ -25,7 +26,7 @@ export default function Signin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.email || !formData.password) {
-      return dispatch(signinFailure("Please fill out all fields."));
+      dispatch(signinFailure("Please fill out all fields."));
       // return setErrorMessage("Please fill out all fields.");
     }
     try {
@@ -108,6 +109,7 @@ export default function Signin() {
                 "Sign in"
               )}
             </Button>
+            <OAuth />
           </form>
           <div className="flex gap-2 text-sm mt-5">
             <span>You don't Have an account?</span>
