@@ -12,9 +12,10 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { toggleTheme } from "../redux/theme/themeSlice";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 export default function Header() {
   const path = useLocation().pathname;
-
+  const { theme } = useSelector((state) => state.theme);
   const dispatch = useDispatch();
 
   return (
@@ -47,7 +48,7 @@ export default function Header() {
           pill
           onClick={() => dispatch(toggleTheme())}
         >
-          <FaMoon />
+          {theme === "dark" ? <FaSun /> : <FaMoon />}
         </Button>
         <Link to="/sign-in">
           <Button className="bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:bg-gradient-to-l focus:ring-purple-200 dark:focus:ring-purple-800">

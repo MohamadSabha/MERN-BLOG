@@ -13,11 +13,11 @@ import OAuth from "../components/OAuth";
 export default function Signin() {
   // const [errorMessage, setErrorMessage] = useState(null);
   // const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
   const [formData, setFormData] = useState({});
 
-  // Redux hooks
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { error: errorMessage, loading } = useSelector((state) => state.user);
 
   const handleChange = (e) => {
@@ -26,7 +26,7 @@ export default function Signin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.email || !formData.password) {
-      dispatch(signinFailure("Please fill out all fields."));
+      return dispatch(signinFailure("Please fill out all fields."));
       // return setErrorMessage("Please fill out all fields.");
     }
     try {
@@ -103,7 +103,9 @@ export default function Signin() {
               {loading ? (
                 <>
                   <Spinner size="sm" />
-                  <span className="pl-3">Loading...</span>
+                  <span an className="pl-3">
+                    Loading...
+                  </span>
                 </>
               ) : (
                 "Sign in"

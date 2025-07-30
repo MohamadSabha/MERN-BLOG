@@ -64,3 +64,51 @@ export const signin = async (req, res, next) => {
     next(err);
   }
 };
+
+export const google = async (req, res, next) => {
+  // Google authentication logic will go here
+  const { name, email, googlePhotoUrl } = req.body;
+  try {
+    // Check if user already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      const token = jwt.sign({ id: existingUser._id }, process.env.SECRET, {
+        expiresIn: "3d",
+      });
+      const { password, ...rest } = existingUser._doc;
+      res
+        .status(200)
+        .cookie("access_token", token, {
+          httpOnly: true,
+        })
+        .json(rest);
+    } else {
+      // Generate a random password for the new user
+      const generatePassord = Math.random().toString(36).slice(-8);
+      const salt = await bcrypt.genSalt(10);
+      const hash = await bcrypt.hash(generatePassord, salt);
+      // Create a new user
+      const newUser = new User({
+        username:
+          name.toLowerCase().split(" ").join("") +
+          Math.random().toString(9).slice(-4),
+        password: hash,
+        email: email,
+        ProfilePicture: googlePhotoUrl,
+      });
+      await newUser.save();
+      const token = jwt.sign({ id: newUser._id }, process.env.SECRET, {
+        expiresIn: "3d",
+      });
+      const { password: pass, ...rest } = newUser._doc;
+      res
+        .status(201)
+        .cookie("access_token", token, {
+          httpOnly: true,
+        })
+        .json(rest);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
