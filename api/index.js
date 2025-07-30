@@ -3,6 +3,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import { logger } from "./middleware/logger.js";
+import { CustomErrorHandler } from "../utils/error.js";
 
 import UserRoutes from "./routes/user.route.js";
 import AuthRoutes from "./routes/auth.route.js";
@@ -37,6 +38,11 @@ app.listen(process.env.PORT || 3000, () => {
 //Routs
 app.use("/api/user", UserRoutes);
 app.use("/api/auth", AuthRoutes);
+
+// 404 middileware
+app.use((req, res, next) => {
+  next(CustomErrorHandler(404, "Rout not found "));
+});
 
 //error middileware
 app.use((err, req, res, next) => {

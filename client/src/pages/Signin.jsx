@@ -1,11 +1,23 @@
-import React, { useState } from "react";
 import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
 import { Link, useNavigate } from "react-router-dom";
+
+import { useState } from "react";
+import {
+  signinStart,
+  signinSuccess,
+  signinFailure,
+} from "../redux/user/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+
 export default function Signin() {
-  const [formData, setFormData] = useState({});
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [loading, setLoading] = useState(false);
+  // const [errorMessage, setErrorMessage] = useState(null);
+  // const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const [formData, setFormData] = useState({});
+
+  // Redux hooks
+  const dispatch = useDispatch();
+  const { error: errorMessage, loading } = useSelector((state) => state.user);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
@@ -13,11 +25,13 @@ export default function Signin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.email || !formData.password) {
-      return setErrorMessage("Please fill out all fields.");
+      return dispatch(signinFailure("Please fill out all fields."));
+      // return setErrorMessage("Please fill out all fields.");
     }
     try {
-      setLoading(true);
-      setErrorMessage(null);
+      dispatch(signinStart());
+      // setLoading(true);
+      // setErrorMessage(null);
       const res = await fetch("/api/auth/Signin", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -25,16 +39,19 @@ export default function Signin() {
       });
       const data = await res.json();
       if (data.success === false) {
-        setLoading(false);
-        return setErrorMessage(data.message);
+        dispatch(signinFailure(data.message));
+        // setLoading(false);
+        // return setErrorMessage(data.message);
       }
-      setLoading(false);
+      // setLoading(false);
       if (res.ok) {
+        dispatch(signinSuccess(data));
         navigate("/");
       }
     } catch (error) {
-      setErrorMessage(error.message);
-      setLoading(false);
+      dispatch(signinFailure(error.message));
+      // setErrorMessage(error.message);
+      // setLoading(false);
     }
   };
   return (
