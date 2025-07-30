@@ -2,20 +2,25 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
   Button,
+  Avatar,
+  Dropdown,
   Navbar,
   NavbarCollapse,
   NavbarLink,
   NavbarToggle,
   TextInput,
+  DropdownHeader,
+  DropdownItem,
+  DropdownDivider,
 } from "flowbite-react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { toggleTheme } from "../redux/theme/themeSlice";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 export default function Header() {
   const path = useLocation().pathname;
   const { theme } = useSelector((state) => state.theme);
+  const { CurrentUser } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   return (
@@ -50,11 +55,34 @@ export default function Header() {
         >
           {theme === "dark" ? <FaSun /> : <FaMoon />}
         </Button>
-        <Link to="/sign-in">
-          <Button className="bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:bg-gradient-to-l focus:ring-purple-200 dark:focus:ring-purple-800">
-            Sign In
-          </Button>
-        </Link>
+        {CurrentUser ? (
+          <Dropdown
+            arrowIcon={false}
+            inline
+            label={
+              <Avatar alt="user" img={CurrentUser.profilePicture} rounded />
+            }
+          >
+            <DropdownHeader>
+              <span className="block text-sm">@{CurrentUser.username}</span>
+              <span className="block text-sm font-medium truncate">
+                {CurrentUser.email}
+              </span>
+            </DropdownHeader>
+            <Link to={"/dashboard?tab=profile"}>
+              <DropdownItem>Profile</DropdownItem>
+            </Link>
+            <DropdownDivider />
+            <DropdownItem>Sign out</DropdownItem>
+          </Dropdown>
+        ) : (
+          <Link to="/sign-in">
+            <Button className="bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:bg-gradient-to-l focus:ring-purple-200 dark:focus:ring-purple-800">
+              Sign In
+            </Button>
+          </Link>
+        )}
+
         <NavbarToggle />
       </div>
       <NavbarCollapse>
