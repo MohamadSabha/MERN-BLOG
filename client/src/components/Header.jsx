@@ -21,6 +21,7 @@ export default function Header() {
   const path = useLocation().pathname;
   const { theme } = useSelector((state) => state.theme);
   const { CurrentUser } = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
 
   return (
@@ -60,7 +61,7 @@ export default function Header() {
             arrowIcon={false}
             inline
             label={
-              <Avatar alt="user" img={CurrentUser.profilePicture} rounded />
+              <Avatar alt="user" img={CurrentUser.ProfilePicture} rounded />
             }
           >
             <DropdownHeader>
