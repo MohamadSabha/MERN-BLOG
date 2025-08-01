@@ -103,9 +103,7 @@ export default function Signin() {
               {loading ? (
                 <>
                   <Spinner size="sm" />
-                  <span an className="pl-3">
-                    Loading...
-                  </span>
+                  <span className="pl-3">Loading...</span>
                 </>
               ) : (
                 "Sign in"

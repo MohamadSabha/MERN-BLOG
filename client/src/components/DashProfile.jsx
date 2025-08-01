@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   TextInput,
@@ -29,7 +30,7 @@ export default function DashProfile() {
 
   const [imageFile, setImageFile] = useState(null);
   const [imageFileUrl, setImageFileUrl] = useState(null);
-  const [uploading, setUploading] = useState(false);
+  const [imageFileUploading, setimageFileUploading] = useState(false);
   const filePickerRef = useRef();
   const dispatch = useDispatch();
   const handleChange = (e) => {
@@ -129,7 +130,7 @@ export default function DashProfile() {
     cloudForm.append("file", imageFile);
     cloudForm.append("upload_preset", "CloudinaryUpload");
 
-    setUploading(true);
+    setimageFileUploading(true);
     try {
       const res = await fetch(
         "https://api.cloudinary.com/v1_1/dibz4taob/image/upload",
@@ -172,7 +173,7 @@ export default function DashProfile() {
     } catch (err) {
       dispatch(updateFailure("Image upload failed:", err));
     } finally {
-      setUploading(false);
+      setimageFileUploading(false);
     }
   };
 
@@ -197,7 +198,7 @@ export default function DashProfile() {
             alt="user"
             className="rounded-full w-full h-full object-cover border-8 border-white"
           />
-          {uploading && (
+          {imageFileUploading && (
             <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white text-sm">
               Uploading...
             </div>
@@ -227,9 +228,9 @@ export default function DashProfile() {
           type="submit"
           className="bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:bg-gradient-to-l focus:ring-purple-200 dark:focus:ring-purple-800"
           outline
-          disabled={loading}
+          disabled={loading || imageFileUploading}
         >
-          {loading ? (
+          {loading || imageFileUploading ? (
             <>
               <Spinner size="sm" />
               <span className="pl-3">Loading...</span>
@@ -238,6 +239,16 @@ export default function DashProfile() {
             "Update Profile"
           )}
         </Button>
+        {CurrentUser.isAdmin && (
+          <Link to={"/create-post"}>
+            <Button
+              type="button"
+              className=" w-full bg-gradient-to-br from-purple-600 to-blue-500 text-white hover:bg-gradient-to-bl focus:ring-blue-300 dark:focus:ring-blue-800"
+            >
+              Create a post
+            </Button>
+          </Link>
+        )}
       </form>
       <div className="text-red-500 flex justify-between mt-5">
         <span onClick={() => setShowModal(true)} className="cursor-pointer">
