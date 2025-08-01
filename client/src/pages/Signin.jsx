@@ -3,9 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { useState } from "react";
 import {
-  signinStart,
-  signinSuccess,
-  signinFailure,
+  signInStart,
+  signInSuccess,
+  signInFailure,
 } from "../redux/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import OAuth from "../components/OAuth";
@@ -26,11 +26,11 @@ export default function Signin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.email || !formData.password) {
-      return dispatch(signinFailure("Please fill out all fields."));
+      return dispatch(signInFailure("Please fill out all fields."));
       // return setErrorMessage("Please fill out all fields.");
     }
     try {
-      dispatch(signinStart());
+      dispatch(signInStart());
       // setLoading(true);
       // setErrorMessage(null);
       const res = await fetch("/api/auth/Signin", {
@@ -40,17 +40,17 @@ export default function Signin() {
       });
       const data = await res.json();
       if (data.success === false) {
-        dispatch(signinFailure(data.message));
+        dispatch(signInFailure(data.message));
         // setLoading(false);
         // return setErrorMessage(data.message);
       }
       // setLoading(false);
       if (res.ok) {
-        dispatch(signinSuccess(data));
+        dispatch(signInSuccess(data));
         navigate("/");
       }
     } catch (error) {
-      dispatch(signinFailure(error.message));
+      dispatch(signInFailure(error.message));
       // setErrorMessage(error.message);
       // setLoading(false);
     }
