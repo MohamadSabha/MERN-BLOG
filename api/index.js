@@ -3,11 +3,11 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import { logger } from "./middleware/logger.js";
-import { CustomErrorHandler } from "../utils/error.js";
+import { CustomErrorHandler } from "./utils/error.js";
 
 import UserRoutes from "./routes/user.route.js";
 import AuthRoutes from "./routes/auth.route.js";
-
+import cookieParser from "cookie-parser";
 // express app
 const app = express();
 dotenv.config();
@@ -18,6 +18,8 @@ app.use(logger);
 //Middleware to parse incoming JSON requests and make data available in req.body
 app.use(express.json());
 
+// cookie parser middleware
+app.use(cookieParser());
 //connect to db
 mongoose
   .connect(process.env.MONGO_URI)

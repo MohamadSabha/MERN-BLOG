@@ -1,5 +1,5 @@
-import { CustomErrorHandler } from "../../utils/error.js";
-import User from "../model/User.model.js";
+import { CustomErrorHandler } from "../utils/error.js";
+import User from "../models/User.model.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 

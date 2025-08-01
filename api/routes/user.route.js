@@ -1,10 +1,7 @@
 import express from "express";
-import { test } from "../controllers/user.controller.js";
+import { updateUser } from "../controllers/user.controller.js";
+import { verifyToken } from "../utils/verifyUser.js";
 const router = express.Router();
 
-// This route is used to test the user controller functionality
-router.get("/", (req, res) => {
-  res.status(200).json({ message: "User route is working!" });
-});
-
+router.put("/update/:userId", verifyToken, updateUser);
 export default router;
