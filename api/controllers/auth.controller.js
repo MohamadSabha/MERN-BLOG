@@ -49,9 +49,13 @@ export const signin = async (req, res, next) => {
       return next(CustomErrorHandler(400, "invalid passowrd"));
     }
 
-    const token = jwt.sign({ id: validUser._id }, process.env.SECRET, {
-      expiresIn: "3d",
-    });
+    const token = jwt.sign(
+      { id: validUser._id, isAdmin: validUser.isAdmin },
+      process.env.SECRET,
+      {
+        expiresIn: "3d",
+      }
+    );
     const { password: pass, ...rest } = validUser._doc;
 
     res
@@ -72,9 +76,13 @@ export const google = async (req, res, next) => {
     // Check if user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      const token = jwt.sign({ id: existingUser._id }, process.env.SECRET, {
-        expiresIn: "3d",
-      });
+      const token = jwt.sign(
+        { id: existingUser._id, isAdmin: existingUser.isAdmin },
+        process.env.SECRET,
+        {
+          expiresIn: "3d",
+        }
+      );
       const { password, ...rest } = existingUser._doc;
       res
         .status(200)
@@ -97,9 +105,13 @@ export const google = async (req, res, next) => {
         ProfilePicture: googlePhotoUrl,
       });
       await newUser.save();
-      const token = jwt.sign({ id: newUser._id }, process.env.SECRET, {
-        expiresIn: "3d",
-      });
+      const token = jwt.sign(
+        { id: newUser._id, isAdmin: newUser.isAdmin },
+        process.env.SECRET,
+        {
+          expiresIn: "3d",
+        }
+      );
       const { password: pass, ...rest } = newUser._doc;
       res
         .status(201)
