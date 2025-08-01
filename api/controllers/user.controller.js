@@ -8,6 +8,7 @@ export const updateUser = async (req, res, next) => {
       CustomErrorHandler(403, "You are not allowed to update this user")
     );
   }
+
   if (req.body.password) {
     if (req.body.password.length < 6) {
       return next(
