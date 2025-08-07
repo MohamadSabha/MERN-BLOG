@@ -13,12 +13,9 @@ import { useNavigate } from "react-router-dom";
 
 export default function CreatePost() {
   const [imageFile, setImageFile] = useState(null);
-  const [imageFileUrl, setImageFileUrl] = useState(null);
+  // const [imageFileUrl, setImageFileUrl] = useState(null);
   const [imageFileUploading, setimageFileUploading] = useState(false);
-
-  // const [imageUploadProgress, setImageUploadProgress] = useState(null);
   const [imageUploadError, setImageUploadError] = useState(null);
-
   const [formData, setFormData] = useState({});
   const [publishError, setPublishError] = useState(null);
 
@@ -29,7 +26,7 @@ export default function CreatePost() {
       setImageUploadError("Please select an image");
       return;
     }
-    setImageFileUrl(URL.createObjectURL(imageFile));
+    // setImageFileUrl(URL.createObjectURL(imageFile));
     const cloudForm = new FormData();
     cloudForm.append("file", imageFile);
     cloudForm.append("upload_preset", "CloudinaryUpload");
@@ -46,7 +43,7 @@ export default function CreatePost() {
       const data = await res.json();
       if (data.secure_url) {
         // Optionally show preview
-        setImageFileUrl(data.secure_url);
+        // setImageFileUrl(data.secure_url);
         setFormData({ ...formData, image: data.secure_url });
       }
     } catch (err) {
@@ -80,7 +77,7 @@ export default function CreatePost() {
         navigate(`/post/${data.slug}`);
       }
     } catch (error) {
-      setPublishError("Something went wrong");
+      setPublishError(error.message || "Failed to publish post");
     }
   };
   return (
