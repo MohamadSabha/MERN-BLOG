@@ -1,66 +1,64 @@
-import { Alert, Button, FileInput, Select, TextInput } from "flowbite-react";
-// import ReactQuill from "react-quill";
-// import "react-quill/dist/quill.snow.css";
-
+import {
+  Alert,
+  Button,
+  FileInput,
+  Select,
+  Spinner,
+  Label,
+  TextInput,
+} from "flowbite-react";
 import { Editor } from "@tinymce/tinymce-react";
-
-// import {
-//   getDownloadURL,
-//   getStorage,
-//   ref,
-//   uploadBytesResumable,
-// } from "firebase/storage";
-// import { app } from "../firebase";
 import { useState } from "react";
-// import { CircularProgressbar } from "react-circular-progressbar";
-// import "react-circular-progressbar/dist/styles.css";
 import { useNavigate } from "react-router-dom";
 
 export default function CreatePost() {
-  // const [file, setFile] = useState(null);
-  const [imageUploadProgress, setImageUploadProgress] = useState(null);
+  const [imageFile, setImageFile] = useState(null);
+  const [imageFileUrl, setImageFileUrl] = useState(null);
+  const [imageFileUploading, setimageFileUploading] = useState(false);
+
+  // const [imageUploadProgress, setImageUploadProgress] = useState(null);
   const [imageUploadError, setImageUploadError] = useState(null);
+
   const [formData, setFormData] = useState({});
   const [publishError, setPublishError] = useState(null);
 
   const navigate = useNavigate();
 
   const handleUpdloadImage = async () => {
-    //   try {
-    //     if (!file) {
-    //       setImageUploadError("Please select an image");
-    //       return;
-    //     }
-    //     setImageUploadError(null);
-    //     const storage = getStorage(app);
-    //     const fileName = new Date().getTime() + "-" + file.name;
-    //     const storageRef = ref(storage, fileName);
-    //     const uploadTask = uploadBytesResumable(storageRef, file);
-    //     uploadTask.on(
-    //       "state_changed",
-    //       (snapshot) => {
-    //         const progress =
-    //           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    //         setImageUploadProgress(progress.toFixed(0));
-    //       },
-    //       (error) => {
-    //         setImageUploadError("Image upload failed");
-    //         setImageUploadProgress(null);
-    //       },
-    //       () => {
-    //         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-    //           setImageUploadProgress(null);
-    //           setImageUploadError(null);
-    //           setFormData({ ...formData, image: downloadURL });
-    //         });
-    //       }
-    //     );
-    //   } catch (error) {
-    //     setImageUploadError("Image upload failed");
-    //     setImageUploadProgress(null);
-    //     console.log(error);
-    //   }
+    if (!imageFile) {
+      setImageUploadError("Please select an image");
+      return;
+    }
+    setImageFileUrl(URL.createObjectURL(imageFile));
+    const cloudForm = new FormData();
+    cloudForm.append("file", imageFile);
+    cloudForm.append("upload_preset", "CloudinaryUpload");
+
+    setimageFileUploading(true);
+    try {
+      const res = await fetch(
+        "https://api.cloudinary.com/v1_1/dibz4taob/image/upload",
+        {
+          method: "POST",
+          body: cloudForm,
+        }
+      );
+      const data = await res.json();
+      if (data.secure_url) {
+        // Optionally show preview
+        setImageFileUrl(data.secure_url);
+        setFormData({ ...formData, image: data.secure_url });
+      }
+    } catch (err) {
+      setImageUploadError("Image upload failed");
+      setimageFileUploading(false);
+      console.log(err);
+      // dispatch(updateFailure("Image upload failed:", err));
+    } finally {
+      setimageFileUploading(false);
+    }
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -113,10 +111,10 @@ export default function CreatePost() {
         </div>
         <div className="flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3">
           <FileInput
-            type="file"
             accept="image/*"
-            // onChange={(e) => setFile(e.target.files[0])}
+            onChange={(e) => setImageFile(e.target.files[0])}
           />
+
           <Button
             type="button"
             className="outline"
@@ -124,20 +122,19 @@ export default function CreatePost() {
             size="sm"
             outline
             onClick={handleUpdloadImage}
-            disabled={imageUploadProgress}
+            disabled={imageFileUploading}
           >
-            {imageUploadProgress ? (
-              <div className="w-16 h-16">
-                <CircularProgressbar
-                  value={imageUploadProgress}
-                  text={`${imageUploadProgress || 0}%`}
-                />
-              </div>
+            {imageFileUploading ? (
+              <>
+                <Spinner size="sm" />
+                <span className="pl-3">Loading...</span>
+              </>
             ) : (
               "Upload Image"
             )}
           </Button>
         </div>
+
         {imageUploadError && <Alert color="failure">{imageUploadError}</Alert>}
         {formData.image && (
           <img
