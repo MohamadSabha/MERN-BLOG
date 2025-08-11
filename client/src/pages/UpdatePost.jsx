@@ -56,17 +56,19 @@ export default function UpdatePost() {
     // setImageFileUrl(URL.createObjectURL(imageFile));
     const cloudForm = new FormData();
     cloudForm.append("file", imageFile);
-    cloudForm.append("upload_preset", "CloudinaryUpload");
+    cloudForm.append(
+      "upload_preset",
+      import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET
+    );
+
+    const UPLOAD_URL = import.meta.env.VITE_CLOUDINARY_UPLOAD_URL;
 
     setimageFileUploading(true);
     try {
-      const res = await fetch(
-        "https://api.cloudinary.com/v1_1/dibz4taob/image/upload",
-        {
-          method: "POST",
-          body: cloudForm,
-        }
-      );
+      const res = await fetch(UPLOAD_URL, {
+        method: "POST",
+        body: cloudForm,
+      });
       const data = await res.json();
       if (data.secure_url) {
         // Optionally show preview

@@ -13,6 +13,7 @@ import OnlyAdminPrivateRoute from "./components/OnlyAdminPrivateRoute";
 import CreatePost from "./pages/CreatePost";
 import UpdatePost from "./pages/UpdatePost";
 import PostPage from "./pages/PostPage";
+import Search from "./pages/Search";
 export default function App() {
   return (
     <BrowserRouter>
@@ -25,6 +26,7 @@ export default function App() {
         <Route path="/Sign-up" element={<Signup />} />
         <Route path="/Projects" element={<Projects />} />
         <Route path="/post/:postSlug" element={<PostPage />} />
+        <Route path="/search" element={<Search />} />
         <Route element={<OnlyAdminPrivateRoute />}>
           <Route path="/Create-Post" element={<CreatePost />} />
           <Route path="/Update-Post/:postId" element={<UpdatePost />} />
