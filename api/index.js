@@ -8,6 +8,7 @@ import { CustomErrorHandler } from "./utils/error.js";
 import UserRoutes from "./routes/user.route.js";
 import AuthRoutes from "./routes/auth.route.js";
 import PostRoutes from "./routes/post.route.js";
+import CommentRoutes from "./routes/comment.route.js";
 import cookieParser from "cookie-parser";
 // express app
 const app = express();
@@ -42,6 +43,7 @@ app.listen(process.env.PORT || 3000, () => {
 app.use("/api/user", UserRoutes);
 app.use("/api/auth", AuthRoutes);
 app.use("/api/post", PostRoutes);
+app.use("/api/comment", CommentRoutes);
 // 404 middileware
 app.use((req, res, next) => {
   next(CustomErrorHandler(404, "Rout not found "));
