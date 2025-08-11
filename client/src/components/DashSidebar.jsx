@@ -47,6 +47,17 @@ export default function DashSidebar() {
     <Sidebar className="w-full md:w-56">
       <SidebarItems>
         <SidebarItemGroup className="flex flex-col gap-1">
+          <Link to="/dashboard?tab=profile">
+            <SidebarItem
+              active={tab === "profile"}
+              icon={HiUser}
+              label={CurrentUser.isAdmin ? "Admin" : "User"}
+              labelColor="dark"
+              as="div"
+            >
+              Profile
+            </SidebarItem>
+          </Link>
           {CurrentUser && CurrentUser.isAdmin && (
             <Link to="/dashboard?tab=dash">
               <SidebarItem
@@ -59,18 +70,16 @@ export default function DashSidebar() {
             </Link>
           )}
           {CurrentUser.isAdmin && (
-            <Link to="/dashboard?tab=posts">
-              <SidebarItem
-                active={tab === "posts"}
-                icon={HiDocumentText}
-                as="div"
-              >
-                Posts
-              </SidebarItem>
-            </Link>
-          )}
-          {CurrentUser.isAdmin && (
             <>
+              <Link to="/dashboard?tab=posts">
+                <SidebarItem
+                  active={tab === "posts"}
+                  icon={HiDocumentText}
+                  as="div"
+                >
+                  Posts
+                </SidebarItem>
+              </Link>
               <Link to="/dashboard?tab=users">
                 <SidebarItem
                   active={tab === "users"}
@@ -80,6 +89,7 @@ export default function DashSidebar() {
                   Users
                 </SidebarItem>
               </Link>
+
               <Link to="/dashboard?tab=comments">
                 <SidebarItem
                   active={tab === "comments"}
@@ -91,18 +101,6 @@ export default function DashSidebar() {
               </Link>
             </>
           )}
-          <Link to="/dashboard?tab=profile">
-            <SidebarItem
-              active={tab === "profile"}
-              icon={HiUser}
-              label={CurrentUser.isAdmin ? "Admin" : "User"}
-              labelColor="dark"
-              as="div"
-            >
-              Profile
-            </SidebarItem>
-          </Link>
-
           <SidebarItem
             icon={HiArrowSmRight}
             className="cursor-pointer"
