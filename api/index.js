@@ -52,8 +52,9 @@ app.use("/api/comment", CommentRoutes);
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, "client/dist")));
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client/dist", "index.html"));
+
+app.get("/{*splat}", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
 });
 
 // 404 middileware
