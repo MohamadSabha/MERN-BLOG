@@ -9,7 +9,9 @@ export const verifyToken = (req, res, next) => {
   }
   jwt.verify(token, process.env.SECRET, (err, user) => {
     if (err) {
-      return next(CustomErrorHandler(401, "Unautherized - Token is not valid"));
+      return next(
+        CustomErrorHandler(401, "403 Forbidden - Token is not valid")
+      );
     }
     req.user = user;
     next();

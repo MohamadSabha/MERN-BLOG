@@ -87,6 +87,14 @@ export default function DashPosts() {
     <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">
       {CurrentUser.isAdmin && userPosts.length > 0 ? (
         <>
+          <Link to={"/create-post"}>
+            <Button
+              type="button"
+              className=" w-full bg-gradient-to-br from-purple-600 to-blue-500 text-white hover:bg-gradient-to-bl focus:ring-blue-300 dark:focus:ring-blue-800 mb-4"
+            >
+              Create a new post
+            </Button>
+          </Link>
           <Table hoverable className="shadow-md">
             <TableHead>
               <TableHeadCell>Date updated</TableHeadCell>

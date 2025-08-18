@@ -4,8 +4,11 @@ import { Link, useParams } from "react-router-dom";
 import CallToAction from "../components/CallToAction";
 import CommentSection from "../components/CommentSection";
 import PostCard from "../components/PostCard";
+import { useSelector } from "react-redux";
 
 export default function PostPage() {
+  const { CurrentUser } = useSelector((state) => state.user);
+
   const { postSlug } = useParams();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -94,6 +97,19 @@ export default function PostPage() {
       <div className="max-w-4xl mx-auto w-full">
         <CallToAction />
       </div>
+      {CurrentUser.isAdmin && (
+        <Link
+          className="text-teal-500 hover:underline"
+          to={`/update-post/${post._id}`}
+        >
+          <Button
+            type="button"
+            className=" mt-4 w-full bg-gradient-to-br from-purple-600 to-blue-500 text-white hover:bg-gradient-to-bl focus:ring-blue-300 dark:focus:ring-blue-800"
+          >
+            Edit this post
+          </Button>
+        </Link>
+      )}
       <CommentSection postId={post._id} />
 
       <div className="flex flex-col justify-center items-center mb-5">
