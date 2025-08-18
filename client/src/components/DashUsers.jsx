@@ -79,16 +79,31 @@ export default function DashUsers() {
         <>
           <Table hoverable className="shadow-md">
             <TableHead>
-              <TableHeadCell>Date created</TableHeadCell>
-              <TableHeadCell>User image</TableHeadCell>
-              <TableHeadCell>Username</TableHeadCell>
-              <TableHeadCell>Email</TableHeadCell>
-              <TableHeadCell>Admin</TableHeadCell>
-              <TableHeadCell>Delete</TableHeadCell>
+              <TableHeadCell className="dark:bg-primary  bg-slate-50  dark:text-white text-primary border-b-2 border-accent">
+                Date created
+              </TableHeadCell>
+              <TableHeadCell className="dark:bg-primary  bg-slate-50  dark:text-white text-primary border-b-2 border-accent">
+                User image
+              </TableHeadCell>
+              <TableHeadCell className="dark:bg-primary  bg-slate-50  dark:text-white text-primary border-b-2 border-accent">
+                Username
+              </TableHeadCell>
+              <TableHeadCell className="dark:bg-primary  bg-slate-50  dark:text-white text-primary border-b-2 border-accent">
+                Email
+              </TableHeadCell>
+              <TableHeadCell className="dark:bg-primary  bg-slate-50  dark:text-white text-primary border-b-2 border-accent">
+                Admin
+              </TableHeadCell>
+              <TableHeadCell className="dark:bg-primary  bg-slate-50  dark:text-white text-primary border-b-2 border-accent">
+                Delete
+              </TableHeadCell>
             </TableHead>
             {users.map((user) => (
               <TableBody className="divide-y" key={user._id}>
-                <TableRow className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                <TableRow
+                  className="dark:bg-primary dark:hover:bg-gradient-to-r dark:hover:from-black dark:hover:to-slate-500 dark:hover:text-white hover:text-accent bg-slate-50
+                  hover:bg-white "
+                >
                   <TableCell>
                     {new Date(user.createdAt).toLocaleDateString()}
                   </TableCell>
@@ -124,12 +139,14 @@ export default function DashUsers() {
             ))}
           </Table>
           {showMore && (
-            <button
-              onClick={handleShowMore}
-              className="w-full text-teal-500 self-center text-sm py-7"
-            >
-              Show more
-            </button>
+            <div className="flex justify-center my-4">
+              <button
+                onClick={handleShowMore}
+                className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-yellow-400 font-medium text-sm transition-all duration-300 ease-in-out hover:brightness-90"
+              >
+                Show more
+              </button>
+            </div>
           )}
         </>
       ) : (

@@ -88,16 +88,31 @@ export default function DashComments() {
         <>
           <Table hoverable className="shadow-md">
             <TableHead>
-              <TableHeadCell>Date updated</TableHeadCell>
-              <TableHeadCell>Comment content</TableHeadCell>
-              <TableHeadCell>Number of likes</TableHeadCell>
-              <TableHeadCell>PostId</TableHeadCell>
-              <TableHeadCell>UserId</TableHeadCell>
-              <TableHeadCell>Delete</TableHeadCell>
+              <TableHeadCell className="dark:bg-primary  bg-slate-50  dark:text-white text-primary border-b-2 border-accent">
+                Date updated
+              </TableHeadCell>
+              <TableHeadCell className="dark:bg-primary  bg-slate-50  dark:text-white text-primary border-b-2 border-accent">
+                Comment content
+              </TableHeadCell>
+              <TableHeadCell className="dark:bg-primary  bg-slate-50  dark:text-white text-primary border-b-2 border-accent">
+                Number of likes
+              </TableHeadCell>
+              <TableHeadCell className="dark:bg-primary  bg-slate-50  dark:text-white text-primary border-b-2 border-accent">
+                PostId
+              </TableHeadCell>
+              <TableHeadCell className="dark:bg-primary  bg-slate-50  dark:text-white text-primary border-b-2 border-accent">
+                UserId
+              </TableHeadCell>
+              <TableHeadCell className="dark:bg-primary  bg-slate-50  dark:text-white text-primary border-b-2 border-accent">
+                Delete
+              </TableHeadCell>
             </TableHead>
             {comments.map((comment) => (
               <TableBody className="divide-y" key={comment._id}>
-                <TableRow className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                <TableRow
+                  className="dark:bg-primary dark:hover:bg-gradient-to-r dark:hover:from-black dark:hover:to-slate-500 dark:hover:text-white hover:text-accent bg-slate-50
+                  hover:bg-white "
+                >
                   <TableCell>
                     {new Date(comment.updatedAt).toLocaleDateString()}
                   </TableCell>
@@ -123,7 +138,7 @@ export default function DashComments() {
           {showMore && (
             <button
               onClick={handleShowMore}
-              className="w-full text-teal-500 self-center text-sm py-7"
+              className="w-full self-center text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-yellow-400 font-medium text-sm transition-all duration-300 ease-in-out hover:brightness-90"
             >
               Show more
             </button>

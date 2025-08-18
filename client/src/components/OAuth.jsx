@@ -35,14 +35,17 @@ export default function OAuth() {
     }
   };
   return (
-    <Button
-      className="bg-gradient-to-br from-pink-500 to-orange-400 text-white hover:bg-gradient-to-bl focus:ring-pink-200 dark:focus:ring-pink-800"
-      type="button"
-      outline
-      onClick={handleGoogleClick}
-    >
-      <AiFillGoogleCircle className="w-6 h-6 mr-2" />
-      Continue with Google
-    </Button>
+    <>
+      <Button
+        type="button"
+        onClick={handleGoogleClick}
+        className="relative inline-flex items-center justify-center p-0.5 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-r from-red-500 to-yellow-400 group-hover:from-red-500 group-hover:to-yellow-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-red-200 dark:focus:ring-red-800"
+      >
+        <span className="relative w-full flex items-center justify-center px-4 py-1.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">
+          <AiFillGoogleCircle className="w-6 h-6 mr-2" />
+          Continue with Google
+        </span>
+      </Button>
+    </>
   );
 }

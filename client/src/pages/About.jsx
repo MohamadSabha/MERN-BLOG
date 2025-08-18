@@ -2,7 +2,7 @@ import CallToAction from "../components/CallToAction";
 
 export default function About() {
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center px-6 py-12 bg-white dark:bg-primary">
+    <div className="min-h-screen flex flex-col justify-center items-center px-6 py-12  dark:bg-black">
       <div className="w-full max-w-8xl text-center">
         <h1 className="text-4xl font-bold text-accent my-10">
           About MHD's Blog

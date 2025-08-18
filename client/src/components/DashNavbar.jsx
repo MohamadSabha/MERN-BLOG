@@ -7,14 +7,14 @@ import {
   HiArrowSmRight,
 } from "react-icons/hi";
 import { Link, useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { signoutSuccess } from "../redux/user/userSlice";
+import { useSelector } from "react-redux";
+// import { signoutSuccess } from "../redux/user/userSlice";
 import { useEffect, useState } from "react";
 
 export default function DashNavbar() {
   const [tab, setTab] = useState("");
   const location = useLocation();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const { CurrentUser } = useSelector((state) => state.user);
   //
   useEffect(() => {
@@ -25,93 +25,98 @@ export default function DashNavbar() {
     }
   }, [location.search]);
 
-  const handleSignout = async () => {
-    try {
-      const res = await fetch("/api/user/signout", { method: "POST" });
-      const data = await res.json();
-      if (!res.ok) {
-        console.log(data.message);
-      } else {
-        dispatch(signoutSuccess());
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+  // const handleSignout = async () => {
+  //   try {
+  //     const res = await fetch("/api/user/signout", { method: "POST" });
+  //     const data = await res.json();
+  //     if (!res.ok) {
+  //       console.log(data.message);
+  //     } else {
+  //       dispatch(signoutSuccess());
+  //     }
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // };
 
   return (
-    <nav className="w-full bg-[#1a1a2e] text-white flex items-center px-6 py-3 shadow-lg gap-2">
-      <Link to="/dashboard?tab=profile">
-        <button
-          className={`flex items-center gap-2 rounded-lg px-4 py-2 transition-colors duration-200 ${
-            tab === "profile" ? "bg-[#e94560] text-white" : "hover:bg-[#16213e]"
-          }`}
-        >
-          <HiUser />
-          {CurrentUser?.isAdmin ? "Admin" : "User"}
-        </button>
-      </Link>
-      {CurrentUser && CurrentUser.isAdmin && (
-        <Link to="/dashboard?tab=dash">
+    <div className="w-full flex justify-center mt-5">
+      <nav className="inline-flex items-center justify-center px-6 py-3 shadow-lg gap-2 rounded-md dark:bg-primary dark:text-white">
+        {" "}
+        <Link to="/dashboard?tab=profile">
           <button
             className={`flex items-center gap-2 rounded-lg px-4 py-2 transition-colors duration-200 ${
-              tab === "dash" || !tab
-                ? "bg-[#e94560] text-white"
-                : "hover:bg-[#16213e]"
+              tab === "profile"
+                ? " text-accent  dark:text-accent border-b-2 border-orange-500"
+                : " dark:hover:text-accent"
             }`}
           >
-            <HiChartPie />
-            Dashboard
+            <HiUser />
+            {CurrentUser?.isAdmin ? "Admin" : ""} {CurrentUser.username}
           </button>
         </Link>
-      )}
-      {CurrentUser?.isAdmin && (
-        <>
-          <Link to="/dashboard?tab=posts">
+        {CurrentUser.isAdmin && (
+          <Link to="/dashboard?tab=dash">
             <button
               className={`flex items-center gap-2 rounded-lg px-4 py-2 transition-colors duration-200 ${
-                tab === "posts"
-                  ? "bg-[#e94560] text-white"
-                  : "hover:bg-[#16213e]"
+                tab === "dash" || !tab
+                  ? " text-accent  dark:text-accent border-b-2 border-orange-500"
+                  : " dark:hover:text-accent"
               }`}
             >
-              <HiDocumentText />
-              Posts
+              <HiChartPie />
+              Dashboard
             </button>
           </Link>
-          <Link to="/dashboard?tab=users">
-            <button
-              className={`flex items-center gap-2 rounded-lg px-4 py-2 transition-colors duration-200 ${
-                tab === "users"
-                  ? "bg-[#e94560] text-white"
-                  : "hover:bg-[#16213e]"
-              }`}
-            >
-              <HiOutlineUserGroup />
-              Users
-            </button>
-          </Link>
-          <Link to="/dashboard?tab=comments">
-            <button
-              className={`flex items-center gap-2 rounded-lg px-4 py-2 transition-colors duration-200 ${
-                tab === "comments"
-                  ? "bg-[#e94560] text-white"
-                  : "hover:bg-[#16213e]"
-              }`}
-            >
-              <HiAnnotation />
-              Comments
-            </button>
-          </Link>
-        </>
-      )}
-      {/* <button
+        )}
+        {CurrentUser?.isAdmin && (
+          <>
+            <Link to="/dashboard?tab=posts">
+              <button
+                className={`flex items-center gap-2 rounded-lg px-4 py-2 transition-colors duration-200 ${
+                  tab === "posts"
+                    ? " text-accent  dark:text-accent border-b-2 border-orange-500"
+                    : " dark:hover:text-accent"
+                }`}
+              >
+                <HiDocumentText />
+                Posts
+              </button>
+            </Link>
+            <Link to="/dashboard?tab=users">
+              <button
+                className={`flex items-center gap-2 rounded-lg px-4 py-2 transition-colors duration-200 ${
+                  tab === "users"
+                    ? " text-accent  dark:text-accent border-b-2 border-orange-500"
+                    : " dark:hover:text-accent"
+                }`}
+              >
+                <HiOutlineUserGroup />
+                Users
+              </button>
+            </Link>
+            <Link to="/dashboard?tab=comments">
+              <button
+                className={`flex items-center gap-2 rounded-lg px-4 py-2 transition-colors duration-200 ${
+                  tab === "comments"
+                    ? " text-accent  dark:text-accent border-b-2 border-orange-500"
+                    : " dark:hover:text-accent"
+                }`}
+              >
+                <HiAnnotation />
+                Comments
+              </button>
+            </Link>
+          </>
+        )}
+        {/* <button
         className="flex items-center gap-2 cursor-pointer rounded-lg px-4 py-2 transition-colors duration-200 hover:bg-[#e94560] hover:text-white ml-auto"
         onClick={handleSignout}
       >
         <HiArrowSmRight />
         Sign Out
       </button> */}
-    </nav>
+      </nav>
+    </div>
   );
 }

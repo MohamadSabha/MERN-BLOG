@@ -180,7 +180,7 @@ export default function DashProfile() {
   };
 
   return (
-    <div className="max-w-lg mx-auto p-3 w-full">
+    <div className="max-w-lg  mx-auto p-3 w-full">
       <h1 className="my-7 text-center font-semibold text-3xl">Profile</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         {/* ////////////////////////////////////////////////////////////// */}
@@ -228,8 +228,7 @@ export default function DashProfile() {
         />
         <Button
           type="submit"
-          className="bg-accent dark:bg-accent text-primary dark:text-primary"
-          outline
+          className="px-4 py-2 rounded-lg bg-gradient-to-r from-red-500 to-yellow-400 text-white shadow-sm transition-all duration-300 hover:brightness-90"
           disabled={loading || imageFileUploading}
         >
           {loading || imageFileUploading ? (
@@ -241,7 +240,7 @@ export default function DashProfile() {
             "Update Profile"
           )}
         </Button>
-        {CurrentUser.isAdmin && (
+        {/* {CurrentUser.isAdmin && (
           <Link to={"/create-post"}>
             <Button
               type="button"
@@ -250,7 +249,7 @@ export default function DashProfile() {
               Create a post
             </Button>
           </Link>
-        )}
+        )} */}
       </form>
       <div className="text-red-500 flex justify-between mt-5">
         <span onClick={() => setShowModal(true)} className="cursor-pointer">

@@ -31,12 +31,6 @@ export default function Home() {
           <p className="text-lg md:text-2xl text-white/80 font-medium mb-6 animate-fade-in delay-200">
             Explore articles, tutorials, and resources to grow as a developer.
           </p>
-          <Link
-            to="/search"
-            className="inline-block px-6 py-2 bg-accent text-black font-bold rounded-full shadow hover:bg-white hover:text-accent transition-all duration-200 animate-fade-in delay-300"
-          >
-            View all posts
-          </Link>
         </div>
       </div>
 
@@ -52,21 +46,8 @@ export default function Home() {
         {/* Section Divider */}
         <div className="flex items-center justify-center my-8 animate-fade-in delay-600">
           <div className="flex-grow h-0.5 bg-yellow-400 mx-4" />
-          <span className="px-6 py-2 bg-white rounded-full shadow text-yellow-600 font-bold text-xl tracking-wide border border-yellow-300">
-            <svg
-              className="inline-block w-6 h-6 mr-2 text-yellow-500"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-            Latest Articles
+          <span className="px-6 py-2  rounded-full shadow text-accent font-bold text-xl tracking-wide border border-yellow-300">
+            Latest Posts
           </span>
           <div className="flex-grow h-0.5 bg-yellow-400 mx-4" />
         </div>
@@ -87,9 +68,9 @@ export default function Home() {
             <div className="relative z-10 text-center px-6">
               <Link
                 to="/search"
-                className="inline-block px-6 py-2 bg-accent text-black font-bold rounded-full shadow hover:bg-white hover:text-accent transition-all duration-200 animate-fade-in delay-300"
+                className="relative inline-flex items-center justify-center p-0.5  me-2 overflow-hidden text-sm font-medium rounded-lg bg-gradient-to-r from-red-500 to-yellow-400 group shadow transition-all duration-300 ease-in-out hover:brightness-90"
               >
-                View all posts
+                <span className="relative px-5 py-2.5"> View all posts</span>
               </Link>
             </div>
           </div>

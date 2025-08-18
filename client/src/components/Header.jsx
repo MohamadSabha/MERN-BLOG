@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
+import logo from "../assets/logo.png";
+
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import {
   Button,
@@ -86,19 +88,25 @@ export default function Header() {
     <header
       style={{ backgroundClip: "padding-box" }} // prevent shadow showing outside
       ref={headerRef}
-      className="w-full fixed top-0 left-0 z-50 bg-white dark:bg-[#18181b] text-black dark:text-white   border-b border-accent 
+      className="w-full fixed top-0 left-0 z-50 bg-white dark:bg-primary text-black dark:text-white   border-b border-accent 
  px-4 mb-20 py-2 flex flex-col"
     >
       <div className="flex items-center justify-between w-full">
-        <div className="flex items-center gap-1">
-          {/* Logo  */}
+        {/* <div className="flex items-center gap-1">
+          
           <Link to="/">
             <span className="px-2 py-1 bg-yellow-400 text-black rounded font-bold text-lg shadow">
               MHD's
             </span>
           </Link>
           <span className="font-bold text-xl  mr-2"> Blog</span>
+        </div> */}
+        <div className="flex items-center gap-2 mr-8">
+          <Link to="/">
+            <img src={logo} alt="MHD's Logo" className="w-20 h-15 " />
+          </Link>
         </div>
+
         <div className="flex items-center gap-2 md:hidden">
           <button
             onClick={() => setMenuOpen((prev) => !prev)}

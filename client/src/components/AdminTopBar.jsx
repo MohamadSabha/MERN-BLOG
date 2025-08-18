@@ -6,8 +6,8 @@ export default function AdminTopBar() {
   if (!CurrentUser?.isAdmin) return null;
 
   return (
-    <div className="w-full bg-yellow-400 dark:bg-yellow-400 text-black dark:text-black rounded-b-xl shadow-lg px-6  py-2 flex items-center justify-between">
-      <span className="font-bold tracking-wide text-lg flex items-center gap-2">
+    <div className="w-full bg-gradient-to-r from-red-500 via-yellow-400 to-yellow-300 text-black dark:text-primary font-bold rounded-md text-sm">
+      <span className="font-bold tracking-wide text-lg flex items-center gap-2 ">
         {/* Example logo/icon */}
         <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
           <circle cx="12" cy="12" r="10" fill="#18181b" />

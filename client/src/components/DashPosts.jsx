@@ -87,22 +87,35 @@ export default function DashPosts() {
     <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">
       {CurrentUser.isAdmin && userPosts.length > 0 ? (
         <>
-          <Link to={"/create-post"}>
-            <Button
-              type="button"
-              className=" w-full bg-gradient-to-br from-purple-600 to-blue-500 text-white hover:bg-gradient-to-bl focus:ring-blue-300 dark:focus:ring-blue-800 mb-4"
-            >
-              Create a new post
-            </Button>
-          </Link>
+          <div className="flex justify-center my-4">
+            <Link to="/create-post">
+              <Button
+                type="button"
+                className="px-4 py-2 rounded-lg bg-gradient-to-r from-red-500 to-yellow-400 text-white shadow-sm transition-all duration-300 hover:brightness-90"
+              >
+                Create a new post
+              </Button>
+            </Link>
+          </div>
+
           <Table hoverable className="shadow-md">
             <TableHead>
-              <TableHeadCell>Date updated</TableHeadCell>
-              <TableHeadCell>Post image</TableHeadCell>
-              <TableHeadCell>Post title</TableHeadCell>
-              <TableHeadCell>Category</TableHeadCell>
-              <TableHeadCell>Delete</TableHeadCell>
-              <TableHeadCell>
+              <TableHeadCell className="dark:bg-primary  bg-slate-50  dark:text-white text-primary border-b-2 border-accent">
+                Date updated
+              </TableHeadCell>
+              <TableHeadCell className="dark:bg-primary  bg-slate-50  dark:text-white text-primary border-b-2 border-accent">
+                Post image
+              </TableHeadCell>
+              <TableHeadCell className="dark:bg-primary  bg-slate-50  dark:text-white text-primary border-b-2 border-accent">
+                Post title
+              </TableHeadCell>
+              <TableHeadCell className="dark:bg-primary  bg-slate-50  dark:text-white text-primary border-b-2 border-accent">
+                Category
+              </TableHeadCell>
+              <TableHeadCell className="dark:bg-primary  bg-slate-50  dark:text-white text-primary border-b-2 border-accent">
+                Delete
+              </TableHeadCell>
+              <TableHeadCell className="dark:bg-primary  bg-slate-50  dark:text-white text-primary border-b-2 border-accent">
                 <span>Edit</span>
               </TableHeadCell>
             </TableHead>
@@ -111,7 +124,8 @@ export default function DashPosts() {
               {userPosts.map((post) => (
                 <TableRow
                   key={post._id}
-                  className="bg-white dark:border-gray-700 dark:bg-gray-800"
+                  className="dark:bg-primary dark:hover:bg-gradient-to-r dark:hover:from-black dark:hover:to-slate-500 dark:hover:text-white hover:text-accent bg-slate-50
+                  hover:bg-white "
                 >
                   <TableCell>
                     {new Date(post.updatedAt).toLocaleDateString()}
@@ -158,12 +172,14 @@ export default function DashPosts() {
             </TableBody>
           </Table>
           {showMore && (
-            <button
-              onClick={handleShowMore}
-              className="w-full text-teal-500 self-center text-sm py-7"
-            >
-              Show more
-            </button>
+            <div className="flex justify-center my-4">
+              <button
+                onClick={handleShowMore}
+                className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-yellow-400 font-medium text-sm transition-all duration-300 ease-in-out hover:brightness-90"
+              >
+                Show more
+              </button>
+            </div>
           )}
         </>
       ) : (

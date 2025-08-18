@@ -75,85 +75,110 @@ export default function DashboardComp() {
     }
   }, [CurrentUser]);
   return (
-    <div className="p-3 md:mx-auto">
-      <div className="flex-wrap flex gap-4 justify-center">
+    <div className="p-3 md:mx-auto bg-gradient-to-br min-h-screen dark:bg-black dark:bg-none">
+      {/* Dashboard Header */}
+      <div className="max-w-6xl mx-auto mb-8"></div>
+      {/* Summary Cards */}
+      <div className="flex flex-wrap gap-6 justify-center mb-10">
         {/* total users div */}
-        <div className="flex flex-col p-3 dark:bg-slate-800 gap-4 md:w-72 w-full rounded-md shadow-md">
-          <div className="flex justify-between">
-            <div className="">
-              <h3 className="text-gray-500 text-md uppercase">Total Users</h3>
-              <p className="text-2xl">{totalUsers}</p>
+        <div className="flex flex-col p-5 bg-gradient-to-br from-slate-100 via-slate-50 to-white dark:from-gray-900 dark:via-black dark:to-gray-800 gap-4 md:w-72 w-full rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 dark:border  dark:border-yellow-700">
+          <div className="flex justify-between items-center">
+            <div>
+              <h3 className="text-gray-700 dark:text-yellow-300 text-md uppercase">
+                Total Users
+              </h3>
+              <p className="text-3xl font-bold text-yellow-700 dark:text-yellow-400">
+                {totalUsers}
+              </p>
             </div>
-            <HiOutlineUserGroup className="bg-teal-600  text-white rounded-full text-5xl p-3 shadow-lg" />
+            <HiOutlineUserGroup className="bg-gradient-to-br from-red-500 via-yellow-400 to-yellow-300 text-black dark:text-primary rounded-full text-5xl p-3 shadow-lg" />
           </div>
-          <div className="flex  gap-2 text-sm">
-            <span className="text-green-500 flex items-center">
+          <div className="flex gap-2 text-sm">
+            <span className="text-green-600 dark:text-green-400 flex items-center font-semibold">
               <HiArrowNarrowUp />
               {lastMonthUsers}
             </span>
-            <div className="text-gray-500">Last month</div>
+            <div className="text-gray-500 dark:text-gray-400">Last month</div>
           </div>
         </div>
         {/* total comments div */}
-        <div className="flex flex-col p-3 dark:bg-slate-800 gap-4 md:w-72 w-full rounded-md shadow-md">
-          <div className="flex justify-between">
-            <div className="">
-              <h3 className="text-gray-500 text-md uppercase">
+        <div className="flex flex-col p-5 bg-gradient-to-br from-slate-100 via-slate-50 to-white dark:from-gray-900 dark:via-black dark:to-gray-800 gap-4 md:w-72 w-full rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 dark:border  dark:border-yellow-700">
+          <div className="flex justify-between items-center">
+            <div>
+              <h3 className="text-gray-700 dark:text-yellow-300 text-md uppercase">
                 Total Comments
               </h3>
-              <p className="text-2xl">{totalComments}</p>
+              <p className="text-3xl font-bold text-yellow-700 dark:text-yellow-400">
+                {totalComments}
+              </p>
             </div>
-            <HiAnnotation className="bg-indigo-600  text-white rounded-full text-5xl p-3 shadow-lg" />
+            <HiAnnotation className="bg-gradient-to-br from-red-500 via-yellow-400 to-yellow-300 text-black dark:text-primary rounded-full text-5xl p-3 shadow-lg" />
           </div>
-          <div className="flex  gap-2 text-sm">
-            <span className="text-green-500 flex items-center">
+          <div className="flex gap-2 text-sm">
+            <span className="text-green-600 dark:text-green-400 flex items-center font-semibold">
               <HiArrowNarrowUp />
               {lastMonthComments}
             </span>
-            <div className="text-gray-500">Last month</div>
+            <div className="text-gray-500 dark:text-gray-400">Last month</div>
           </div>
         </div>
         {/* total posts div */}
-        <div className="flex flex-col p-3 dark:bg-slate-800 gap-4 md:w-72 w-full rounded-md shadow-md">
-          <div className="flex justify-between">
-            <div className="">
-              <h3 className="text-gray-500 text-md uppercase">Total Posts</h3>
-              <p className="text-2xl">{totalPosts}</p>
+        <div className="flex flex-col p-5 bg-gradient-to-br from-slate-100 via-slate-50 to-white dark:from-gray-900 dark:via-black dark:to-gray-800 gap-4 md:w-72 w-full rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 dark:border  dark:border-yellow-700">
+          <div className="flex justify-between items-center">
+            <div>
+              <h3 className="text-gray-700 dark:text-yellow-300 text-md uppercase">
+                Total Posts
+              </h3>
+              <p className="text-3xl font-bold text-yellow-700 dark:text-yellow-400">
+                {totalPosts}
+              </p>
             </div>
-            <HiDocumentText className="bg-lime-600  text-white rounded-full text-5xl p-3 shadow-lg" />
+            <HiDocumentText className="bg-gradient-to-br from-red-500 via-yellow-400 to-yellow-300 text-black dark:text-primary rounded-full text-5xl p-3 shadow-lg" />
           </div>
-          <div className="flex  gap-2 text-sm">
-            <span className="text-green-500 flex items-center">
+          <div className="flex gap-2 text-sm">
+            <span className="text-green-600 dark:text-green-400 flex items-center font-semibold">
               <HiArrowNarrowUp />
               {lastMonthPosts}
             </span>
-            <div className="text-gray-500">Last month</div>
+            <div className="text-gray-500 dark:text-gray-400">Last month</div>
           </div>
         </div>
       </div>
-      <div className="flex flex-wrap gap-4 py-3 mx-auto justify-center">
+      {/* Tables Section */}
+      <div className="flex flex-wrap gap-6 py-3 mx-auto justify-center">
         {/* recent users table */}
-        <div className="flex flex-col w-full md:w-auto shadow-md p-2 rounded-md dark:bg-gray-800">
-          <div className="flex justify-between  p-3 text-sm font-semibold">
-            <h1 className="text-center p-2">Recent users</h1>
-            <Button outline gradientDuoTone="purpleToPink">
+        <div className="flex flex-col w-full md:w-auto shadow-lg p-4 rounded-xl bg-white dark:bg-black border border-yellow-200 dark:border-yellow-700">
+          <div className="flex justify-between items-center mb-2">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-yellow-400 font-medium text-sm transition-all duration-300 ease-in-out hover:brightness-90 inline-flex items-center gap-2 px-3 py-1 ">
+              <HiOutlineUserGroup className="text-orange-400" />
+              Recent Users
+            </span>
+
+            <Button outline gradientDuoTone="redToYellow" size="sm">
               <Link to={"/dashboard?tab=users"}>See all</Link>
             </Button>
           </div>
-          <Table hoverable>
+          <Table hoverable className="text-sm">
             <TableHead>
-              <TableHeadCell>User image</TableHeadCell>
-              <TableHeadCell>Username</TableHeadCell>
+              <TableHeadCell className="dark:bg-primary  bg-slate-50  dark:text-white text-primary border-b-2 border-accent">
+                User image
+              </TableHeadCell>
+              <TableHeadCell className="dark:bg-primary  bg-slate-50  dark:text-white text-primary border-b-2 border-accent">
+                Username
+              </TableHeadCell>
             </TableHead>
             {users &&
               users.map((user) => (
                 <TableBody key={user._id} className="divide-y">
-                  <TableRow className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                  <TableRow
+                    className="dark:bg-primary dark:hover:bg-gradient-to-r dark:hover:from-black dark:hover:to-slate-500 dark:hover:text-white hover:text-accent bg-slate-50
+                  hover:bg-white "
+                  >
                     <TableCell>
                       <img
                         src={user.ProfilePicture}
                         alt="user"
-                        className="w-10 h-10 rounded-full bg-gray-500"
+                        className="w-10 h-10 rounded-full bg-gray-200 border"
                       />
                     </TableCell>
                     <TableCell>{user.username}</TableCell>
@@ -163,24 +188,34 @@ export default function DashboardComp() {
           </Table>
         </div>
         {/* recent comments table */}
+        <div className="flex flex-col w-full md:w-auto shadow-lg p-4 rounded-xl bg-white dark:bg-black border border-yellow-200 dark:border-yellow-700">
+          <div className="flex justify-between items-center mb-2">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-yellow-400 font-medium text-sm transition-all duration-300 ease-in-out hover:brightness-90 inline-flex items-center gap-2 px-3 py-1 ">
+              <HiAnnotation className="text-orange-400" />
+              Recent Comments
+            </span>
 
-        <div className="flex flex-col w-full md:w-auto shadow-md p-2 rounded-md dark:bg-gray-800">
-          <div className="flex justify-between  p-3 text-sm font-semibold">
-            <h1 className="text-center p-2">Recent comments</h1>
-            <Button outline gradientDuoTone="purpleToPink">
+            <Button outline gradientDuoTone="redToYellow" size="sm">
               <Link to={"/dashboard?tab=comments"}>See all</Link>
             </Button>
           </div>
-          <Table hoverable>
+          <Table hoverable className="text-sm">
             <TableHead>
-              <TableHeadCell>Comment content</TableHeadCell>
-              <TableHeadCell>Likes</TableHeadCell>
+              <TableHeadCell className="dark:bg-primary  bg-slate-50  dark:text-white text-primary border-b-2 border-accent">
+                Comment
+              </TableHeadCell>
+              <TableHeadCell className="dark:bg-primary  bg-slate-50  dark:text-white text-primary border-b-2 border-accent">
+                Likes
+              </TableHeadCell>
             </TableHead>
             {comments &&
               comments.map((comment) => (
                 <TableBody key={comment._id} className="divide-y">
-                  <TableRow className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                    <TableCell className="w-96">
+                  <TableRow
+                    className="dark:bg-primary dark:hover:bg-gradient-to-r dark:hover:from-black dark:hover:to-slate-500 dark:hover:text-white hover:text-accent bg-slate-50
+                  hover:bg-white "
+                  >
+                    <TableCell className="w-72">
                       <p className="line-clamp-2">{comment.content}</p>
                     </TableCell>
                     <TableCell>{comment.numberOfLikes}</TableCell>
@@ -190,33 +225,46 @@ export default function DashboardComp() {
           </Table>
         </div>
         {/* recent posts table */}
-
-        <div className="flex flex-col w-full md:w-auto shadow-md p-2 rounded-md dark:bg-gray-800">
-          <div className="flex justify-between  p-3 text-sm font-semibold">
-            <h1 className="text-center p-2">Recent posts</h1>
-            <Button outline gradientDuoTone="purpleToPink">
+        <div className="flex flex-col w-full md:w-auto shadow-lg p-4 rounded-xl bg-white dark:bg-black border border-yellow-200 dark:border-yellow-700">
+          <div className="flex justify-between items-center mb-2">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-yellow-400 font-medium text-sm transition-all duration-300 ease-in-out hover:brightness-90 inline-flex items-center gap-2 px-3 py-1 ">
+              <HiDocumentText className="text-orange-400" /> Recent Posts
+            </span>
+            <Button outline gradientDuoTone="redToYellow" size="sm">
               <Link to={"/dashboard?tab=posts"}>See all</Link>
             </Button>
           </div>
-          <Table hoverable>
+          <Table hoverable className="text-sm">
+            {/* Table Header */}
             <TableHead>
-              <TableHeadCell>Post image</TableHeadCell>
-              <TableHeadCell>Post Title</TableHeadCell>
-              <TableHeadCell>Category</TableHeadCell>
+              <TableHeadCell className="dark:bg-primary  bg-slate-50  dark:text-white text-primary border-b-2 border-accent">
+                Image
+              </TableHeadCell>
+              <TableHeadCell className="dark:bg-primary  bg-slate-50  dark:text-white text-primary border-b-2 border-accent">
+                Title
+              </TableHeadCell>
+              <TableHeadCell className="dark:bg-primary  bg-slate-50  dark:text-white text-primary border-b-2 border-accent">
+                Category
+              </TableHeadCell>
             </TableHead>
+
+            {/* Table Body */}
             {posts &&
               posts.map((post) => (
                 <TableBody key={post._id} className="divide-y">
-                  <TableRow className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                  <TableRow
+                    className="dark:bg-primary dark:hover:bg-gradient-to-r dark:hover:from-black dark:hover:to-slate-500 dark:hover:text-white hover:text-accent bg-slate-50
+                  hover:bg-white "
+                  >
                     <TableCell>
                       <img
                         src={post.image}
-                        alt="user"
-                        className="w-14 h-10 rounded-md bg-gray-500"
+                        alt="post"
+                        className="w-14 h-10 rounded-md bg-gray-200 dark:bg-gray-800 border"
                       />
                     </TableCell>
-                    <TableCell className="w-96">{post.title}</TableCell>
-                    <TableCell className="w-5">{post.category}</TableCell>
+                    <TableCell className="w-72">{post.title}</TableCell>
+                    <TableCell>{post.category}</TableCell>
                   </TableRow>
                 </TableBody>
               ))}

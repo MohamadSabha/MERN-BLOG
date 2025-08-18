@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
 import { Link, useNavigate } from "react-router-dom";
 import OAuth from "../components/OAuth";
+import logo from "../assets/logo.png";
+
 export default function Signup() {
   const [formData, setFormData] = useState({});
   const [errorMessage, setErrorMessage] = useState(null);
@@ -42,7 +44,7 @@ export default function Signup() {
     <div className="min-h-screen mt-20">
       <div className="flex p-3 max-w-3xl mx-auto flex-col md:flex-row md:items-center gap-5">
         {/* left side div */}
-        <div className="flex-1">
+        {/* <div className="flex-1">
           <Link to="/" className="font-bold dark:text-white text-4xl">
             <span className="px-2 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg text-white">
               MHD's
@@ -52,6 +54,34 @@ export default function Signup() {
           <p className="text-sm mt-5">
             This is a demo project. You can sign up with your email and password
             or with Google.
+          </p>
+        </div> */}
+
+        <div className="flex-1 flex flex-col items-center justify-center text-center -mt-10">
+          <Link to="/">
+            <img src={logo} alt="MHD's Logo" className="w-36 h-36" />
+          </Link>
+
+          <h3 className="font-bold text-orange-600">🔑 Create Your Account</h3>
+          <p className="text-sm text-gray-700 dark:text-gray-300">
+            You can sign up with Google or any email address (fake emails are
+            accepted).
+          </p>
+          <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">
+            <strong>
+              Optional: To explore full admin features, you can also sign in
+              with the admin demo account:
+            </strong>
+            <br />
+            Email:{" "}
+            <code className="bg-gray-200 dark:bg-gray-700 px-1 rounded">
+              admin@example.com
+            </code>
+            <br />
+            Password:{" "}
+            <code className="bg-gray-200 dark:bg-gray-700 px-1 rounded">
+              admin123
+            </code>
           </p>
         </div>
         {/* right side div */}
@@ -89,7 +119,7 @@ export default function Signup() {
               />
             </div>
             <Button
-              className="bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:bg-gradient-to-l focus:ring-purple-200 dark:focus:ring-purple-800"
+              className="relative inline-flex items-center justify-center p-0.5  me-2 overflow-hidden text-sm font-medium rounded-lg bg-gradient-to-r from-red-500 to-yellow-400 group shadow transition-all duration-300 ease-in-out hover:brightness-90"
               type="submit"
               disabled={loading}
             >
@@ -106,7 +136,10 @@ export default function Signup() {
           </form>
           <div className="flex gap-2 text-sm mt-5">
             <span>Have an account?</span>
-            <Link to="/sign-in" className="text-blue-500">
+            <Link
+              to="/sign-in"
+              className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-yellow-400 font-medium text-sm transition-all duration-300 ease-in-out hover:brightness-90"
+            >
               Sign In
             </Link>
           </div>
