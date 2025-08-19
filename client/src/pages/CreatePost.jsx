@@ -152,7 +152,7 @@ export default function CreatePost() {
           }}
         /> */}
         <Editor
-          apiKey="329an9qnec68io9ns95kdj7c8mkyb0kpnr78yrso5y3mh5a8" // optional for local use
+          apiKey={import.meta.env.VITE_EDITOR_KEY} // optional for local use
           value={formData.content}
           init={{
             height: 300,
