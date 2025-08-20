@@ -13,7 +13,7 @@ export default function Comment({ comment, onLike, onEdit, onDelete }) {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const res = await fetch(`/api/user/${comment.userId}`);
+        const res = await fetch(`/api/user/${comment.userId._id}`);
         const data = await res.json();
         if (res.ok) {
           setUser(data);
@@ -50,7 +50,7 @@ export default function Comment({ comment, onLike, onEdit, onDelete }) {
   };
 
   return (
-    <div className="flex p-4 border-b dark:border-gray-600 text-sm">
+    <div className="flex p-4 border-b dark:border-accent border-orange-500 text-sm">
       <div className="flex-shrink-0 mr-3">
         <img
           className="w-10 h-10 rounded-full bg-gray-200"
@@ -60,17 +60,17 @@ export default function Comment({ comment, onLike, onEdit, onDelete }) {
       </div>
       <div className="flex-1">
         <div className="flex items-center mb-1">
-          <span className="font-bold mr-1 text-xs truncate">
+          <span className="font-bold mr-1 text-xs truncate ">
             {user ? `@${user.username}` : "anonymous user"}
           </span>
-          <span className="text-gray-500 text-xs">
+          <span className="text-accent text-xs">
             {moment(comment.createdAt).fromNow()}
           </span>
         </div>
         {isEditing ? (
           <>
             <Textarea
-              className="mb-2"
+              className="mb-2 "
               value={editedContent}
               onChange={(e) => setEditedContent(e.target.value)}
             />
@@ -78,15 +78,15 @@ export default function Comment({ comment, onLike, onEdit, onDelete }) {
               <Button
                 type="button"
                 size="sm"
-                className="bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:bg-gradient-to-l focus:ring-purple-200 dark:focus:ring-purple-800"
+                className="relative  items-center justify-center px-5 py-5 me-2 overflow-hidden text-sm  rounded-lg bg-gradient-to-r from-red-500 to-yellow-400 group shadow transition-all duration-300 ease-in-out hover:brightness-90"
                 onClick={handleSave}
               >
                 Save
               </Button>
+
               <Button
                 type="button"
-                size="sm"
-                gradientDuoTone="purpleToBlue"
+                className="dark:hover:text-orange-500 dark:hover:border-orange-500 px-4 py-5"
                 outline
                 onClick={() => setIsEditing(false)}
               >
@@ -96,8 +96,8 @@ export default function Comment({ comment, onLike, onEdit, onDelete }) {
           </>
         ) : (
           <>
-            <p className="text-gray-500 pb-2">{comment.content}</p>
-            <div className="flex items-center pt-2 text-xs border-t dark:border-gray-700 max-w-fit gap-2">
+            <p className="dark:text-white pb-2">{comment.content}</p>
+            <div className="flex items-center pt-2 text-xs border-t dark:border-orange-700  max-w-fit gap-2">
               <button
                 type="button"
                 onClick={() => onLike(comment._id)}
@@ -116,7 +116,8 @@ export default function Comment({ comment, onLike, onEdit, onDelete }) {
                     (comment.numberOfLikes === 1 ? "like" : "likes")}
               </p>
               {CurrentUser &&
-                (CurrentUser._id === comment.userId || CurrentUser.isAdmin) && (
+                (CurrentUser._id === comment.userId._id ||
+                  CurrentUser.isAdmin) && (
                   <>
                     <button
                       type="button"
@@ -128,7 +129,7 @@ export default function Comment({ comment, onLike, onEdit, onDelete }) {
                     <button
                       type="button"
                       onClick={() => onDelete(comment._id)}
-                      className="text-gray-400 hover:text-red-500"
+                      className="text-red-400 hover:text-red-500"
                     >
                       Delete
                     </button>

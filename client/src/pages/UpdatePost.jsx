@@ -140,7 +140,7 @@ export default function UpdatePost() {
             <option value="nextjs">Next.js</option>
           </Select>
         </div>
-        <div className="flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3">
+        <div className="flex gap-4 items-center justify-between border border-y-orange-600 border-x-accent rounded-md bx-3 p-3">
           <FileInput
             accept="image/*"
             onChange={(e) => setImageFile(e.target.files[0])}
@@ -148,10 +148,9 @@ export default function UpdatePost() {
 
           <Button
             type="button"
-            className="outline"
+            className="px-4 py-6 rounded-lg bg-gradient-to-r from-red-500 to-yellow-400 text-white shadow-sm transition-all duration-300 hover:brightness-90"
             // gradientDuoTone="purpleToBlue"
             size="sm"
-            outline
             onClick={handleUpdloadImage}
             disabled={imageFileUploading}
           >
@@ -201,7 +200,7 @@ export default function UpdatePost() {
         />
         <Button
           type="submit"
-          className="bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:bg-gradient-to-l focus:ring-purple-200 dark:focus:ring-purple-800"
+          className=" mb-28 px-4 py-2 rounded-lg bg-gradient-to-r from-red-500 to-yellow-400 text-white shadow-sm transition-all duration-300 hover:brightness-90"
         >
           Update
         </Button>

@@ -1,4 +1,5 @@
 import Comment from "../models/comment.model.js";
+import { CustomErrorHandler } from "../utils/error.js";
 
 export const createComment = async (req, res, next) => {
   try {
@@ -16,7 +17,8 @@ export const createComment = async (req, res, next) => {
       userId,
     });
     await newComment.save();
-
+    await newComment.populate({ path: "userId", select: "username" });
+    await newComment.populate({ path: "postId", select: "title" });
     res.status(200).json(newComment);
   } catch (error) {
     next(error);
@@ -25,9 +27,11 @@ export const createComment = async (req, res, next) => {
 
 export const getPostComments = async (req, res, next) => {
   try {
-    const comments = await Comment.find({ postId: req.params.postId }).sort({
-      createdAt: -1,
-    });
+    const comments = await Comment.find({ postId: req.params.postId })
+      .sort({ createdAt: -1 })
+      .populate({ path: "userId", select: "username" }) // Get username
+      .populate({ path: "postId", select: "title" }); // Get post title
+
     res.status(200).json(comments);
   } catch (error) {
     next(error);
@@ -38,7 +42,7 @@ export const likeComment = async (req, res, next) => {
   try {
     const comment = await Comment.findById(req.params.commentId);
     if (!comment) {
-      return next(errorHandler(404, "Comment not found"));
+      return next(CustomErrorHandler(404, "Comment not found"));
     }
     const userIndex = comment.likes.indexOf(req.user.id);
     if (userIndex === -1) {
@@ -59,11 +63,14 @@ export const editComment = async (req, res, next) => {
   try {
     const comment = await Comment.findById(req.params.commentId);
     if (!comment) {
-      return next(errorHandler(404, "Comment not found"));
+      return next(CustomErrorHandler(404, "Comment not found"));
     }
-    if (comment.userId !== req.user.id && !req.user.isAdmin) {
+    if (
+      comment.userId.toString() !== req.user.id.toString() &&
+      !req.user.isAdmin
+    ) {
       return next(
-        errorHandler(403, "You are not allowed to edit this comment")
+        CustomErrorHandler(403, "You are not allowed to edit this comment")
       );
     }
     const editedComment = await Comment.findByIdAndUpdate(
@@ -83,11 +90,11 @@ export const deleteComment = async (req, res, next) => {
   try {
     const comment = await Comment.findById(req.params.commentId);
     if (!comment) {
-      return next(errorHandler(404, "Comment not found"));
+      return next(CustomErrorHandler(404, "Comment not found"));
     }
-    if (comment.userId !== req.user.id && !req.user.isAdmin) {
+    if (comment.userId.toString() !== req.user.id && !req.user.isAdmin) {
       return next(
-        errorHandler(403, "You are not allowed to delete this comment")
+        CustomErrorHandler(403, "You are not allowed to delete this comment")
       );
     }
     await Comment.findByIdAndDelete(req.params.commentId);
@@ -99,7 +106,9 @@ export const deleteComment = async (req, res, next) => {
 
 export const getallcomments = async (req, res, next) => {
   if (!req.user.isAdmin)
-    return next(errorHandler(403, "You are not allowed to get all comments"));
+    return next(
+      CustomErrorHandler(403, "You are not allowed to get all comments")
+    );
   try {
     const startIndex = parseInt(req.query.startIndex) || 0;
     const limit = parseInt(req.query.limit) || 9;
@@ -107,7 +116,10 @@ export const getallcomments = async (req, res, next) => {
     const comments = await Comment.find()
       .sort({ createdAt: sortDirection })
       .skip(startIndex)
-      .limit(limit);
+      .limit(limit)
+      .populate("userId", "username") // populate only username
+      .populate("postId", "title"); // populate only post title
+
     const totalComments = await Comment.countDocuments();
     const now = new Date();
     const oneMonthAgo = new Date(

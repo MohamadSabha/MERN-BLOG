@@ -88,9 +88,11 @@ export default function Header() {
     <header
       style={{ backgroundClip: "padding-box" }} // prevent shadow showing outside
       ref={headerRef}
-      className="w-full fixed top-0 left-0 z-50 bg-white dark:bg-primary text-black dark:text-white   border-b border-accent 
+      className=" w-full fixed top-0 left-0 z-50 bg-white dark:bg-primary text-black dark:text-white  
  px-4 mb-20 py-2 flex flex-col"
     >
+      <span className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 to-yellow-400"></span>
+
       <div className="flex items-center justify-between w-full">
         {/* <div className="flex items-center gap-1">
           

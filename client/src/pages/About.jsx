@@ -1,11 +1,11 @@
-import CallToAction from "../components/CallToAction";
+import CallToActionAbout from "../components/CallToActionAbout";
 
 export default function About() {
   return (
     <div className="min-h-screen flex flex-col justify-center items-center px-6 py-12  dark:bg-black">
       <div className="w-full max-w-8xl text-center">
         <h1 className="text-4xl font-bold text-accent my-10">
-          About MHD's Blog
+          About CODE NEST
         </h1>
 
         <div className="text-lg text-gray-700 dark:text-gray-300 space-y-6">
@@ -32,7 +32,7 @@ export default function About() {
         </div>
 
         <div className="mt-10">
-          <CallToAction />
+          <CallToActionAbout />
         </div>
       </div>
     </div>

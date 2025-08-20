@@ -20,10 +20,20 @@ import {
 
 export default function FooterComponent() {
   return (
-    <Footer
-      container
-      className="dark:bg-primary border border-t-8 border-accent"
-    >
+    <Footer container className="relative dark:bg-primary  ">
+      <svg
+        className="absolute top-0 left-0 w-full h-2"
+        viewBox="0 0 100 2"
+        preserveAspectRatio="none"
+      >
+        <defs>
+          <linearGradient id="red-to-yellow" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor="#ff0000" /> {/* red */}
+            <stop offset="100%" stopColor="#FFD700" /> {/* yellow */}
+          </linearGradient>
+        </defs>
+        <rect width="100" height="1" fill="url(#red-to-yellow)" />
+      </svg>
       <div className="w-full max-w-7xl mx-auto">
         <div className="grid w-full justify-between sm:flex md:grid-cols-1">
           {/* logo */}
@@ -84,7 +94,7 @@ export default function FooterComponent() {
         <div className="w-full sm:flex sm:items-center sm:justify-between">
           <FooterCopyright
             href="#"
-            by="MHD's blog"
+            by="CODE NEST"
             year={new Date().getFullYear()}
           />
           <div className="flex gap-6 sm:mt-0 mt-4 sm:justify-center">

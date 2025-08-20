@@ -97,14 +97,14 @@ export default function PostPage() {
       <div className="max-w-4xl mx-auto w-full">
         <CallToAction />
       </div>
-      {CurrentUser.isAdmin && (
+      {CurrentUser?.isAdmin && (
         <Link
           className="text-teal-500 hover:underline"
           to={`/update-post/${post._id}`}
         >
           <Button
             type="button"
-            className=" mt-4 w-full bg-gradient-to-br from-purple-600 to-blue-500 text-white hover:bg-gradient-to-bl focus:ring-blue-300 dark:focus:ring-blue-800"
+            className=" mt-4 w-full px-4 py-2 rounded-lg bg-gradient-to-r from-red-500 to-yellow-400 text-white shadow-sm transition- duration-300 hover:brightness-90"
           >
             Edit this post
           </Button>
@@ -113,7 +113,9 @@ export default function PostPage() {
       <CommentSection postId={post._id} />
 
       <div className="flex flex-col justify-center items-center mb-5">
-        <h1 className="text-xl mt-5">Recent articles</h1>
+        <h1 className="text-transparent text-xl mt-5  bg-clip-text bg-gradient-to-r from-red-500 to-yellow-400 font-medium  transition-all duration-300 ease-in-out hover:brightness-90">
+          Recent articles
+        </h1>
         <div className="flex flex-wrap gap-5 mt-5 justify-center">
           {recentPosts &&
             recentPosts.map((post) => <PostCard key={post._id} post={post} />)}

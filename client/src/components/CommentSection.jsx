@@ -125,7 +125,7 @@ export default function CommentSection({ postId }) {
   return (
     <div className="max-w-2xl mx-auto w-full p-3">
       {CurrentUser ? (
-        <div className="flex items-center gap-1 my-5 text-gray-500 text-sm">
+        <div className="flex items-center gap-1 my-5 text-white-500 text-sm">
           <p>Signed in as:</p>
           <img
             className="h-5 w-5 object-cover rounded-full"
@@ -134,23 +134,26 @@ export default function CommentSection({ postId }) {
           />
           <Link
             to={"/dashboard?tab=profile"}
-            className="text-xs text-cyan-600 hover:underline"
+            className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-yellow-400 font-medium text-sm transition-all duration-300 ease-in-out hover:brightness-90"
           >
             @{CurrentUser.username}
           </Link>
         </div>
       ) : (
-        <div className="text-sm text-teal-500 my-5 flex gap-1">
+        <div className="text-sm text-red-500 my-5 flex gap-1">
           You must be signed in to comment.
-          <Link className="text-blue-500 hover:underline" to={"/sign-in"}>
-            Sign In
+          <Link
+            className="group inline-flex items-center gap-1 text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-yellow-400 font-medium text-sm transition-all duration-300 ease-in-out hover:brightness-90 hover:underline"
+            to={"/sign-in"}
+          >
+            (Sign In 👉)
           </Link>
         </div>
       )}
       {CurrentUser && (
         <form
           onSubmit={handleSubmit}
-          className="border border-teal-500 rounded-md p-3"
+          className="border border-x-accent border-y-orange-700 rounded-md p-3"
         >
           <Textarea
             placeholder="Add a comment..."
@@ -163,7 +166,10 @@ export default function CommentSection({ postId }) {
             <p className="text-gray-500 text-xs">
               {200 - comment.length} characters remaining
             </p>
-            <Button outline gradientDuoTone="purpleToBlue" type="submit">
+            <Button
+              className="relative  items-center justify-center px-5 py-5 me-2 overflow-hidden text-sm  rounded-lg bg-gradient-to-r from-red-500 to-yellow-400 group shadow transition-all duration-300 ease-in-out hover:brightness-90"
+              type="submit"
+            >
               Submit
             </Button>
           </div>
@@ -178,10 +184,10 @@ export default function CommentSection({ postId }) {
         <p className="text-sm my-5">No comments yet!</p>
       ) : (
         <>
-          <div className="text-sm my-5 flex items-center gap-1">
+          <div className="text-sm my-5 flex items-center gap-1 text-accent">
             <p>Comments</p>
-            <div className="border border-gray-400 py-1 px-2 rounded-sm">
-              <p>{comments.length}</p>
+            <div className="border border-orange-400 py-1 px-2 rounded-sm">
+              <p className="text-accent">{comments.length}</p>
             </div>
           </div>
           {comments.map((comment) => (
@@ -202,10 +208,11 @@ export default function CommentSection({ postId }) {
         show={showModal}
         onClose={() => setShowModal(false)}
         popup
+        className="dark:bg-black/70"
         size="md"
       >
-        <ModalHeader />
-        <ModalBody>
+        <ModalHeader className="dark:bg-primary" />
+        <ModalBody className="dark:bg-primary">
           <div className="text-center">
             <HiOutlineExclamationCircle className="h-14 w-14 text-gray-400 dark:text-gray-200 mb-4 mx-auto" />
             <h3 className="mb-5 text-lg text-gray-500 dark:text-gray-400">

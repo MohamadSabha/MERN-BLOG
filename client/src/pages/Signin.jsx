@@ -75,7 +75,7 @@ export default function Signin() {
             <br />
             Email:{" "}
             <code className="bg-gray-200 dark:bg-gray-700 px-1 rounded">
-              admin@example.com
+              admin@hotmail.com
             </code>
             <br />
             Password:{" "}

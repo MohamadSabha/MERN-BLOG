@@ -154,7 +154,11 @@ export default function DashboardComp() {
               Recent Users
             </span>
 
-            <Button outline gradientDuoTone="redToYellow" size="sm">
+            <Button
+              outline
+              className="dark:hover:text-orange-500 dark:hover:border-orange-500 px-4 py-5"
+              size="sm"
+            >
               <Link to={"/dashboard?tab=users"}>See all</Link>
             </Button>
           </div>
@@ -195,7 +199,11 @@ export default function DashboardComp() {
               Recent Comments
             </span>
 
-            <Button outline gradientDuoTone="redToYellow" size="sm">
+            <Button
+              outline
+              className="dark:hover:text-orange-500 dark:hover:border-orange-500 px-4 py-5"
+              size="sm"
+            >
               <Link to={"/dashboard?tab=comments"}>See all</Link>
             </Button>
           </div>
@@ -230,7 +238,11 @@ export default function DashboardComp() {
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-yellow-400 font-medium text-sm transition-all duration-300 ease-in-out hover:brightness-90 inline-flex items-center gap-2 px-3 py-1 ">
               <HiDocumentText className="text-orange-400" /> Recent Posts
             </span>
-            <Button outline gradientDuoTone="redToYellow" size="sm">
+            <Button
+              outline
+              className="dark:hover:text-orange-500 dark:hover:border-orange-500 px-4 py-5"
+              size="sm"
+            >
               <Link to={"/dashboard?tab=posts"}>See all</Link>
             </Button>
           </div>

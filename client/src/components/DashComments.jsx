@@ -98,10 +98,10 @@ export default function DashComments() {
                 Number of likes
               </TableHeadCell>
               <TableHeadCell className="dark:bg-primary  bg-slate-50  dark:text-white text-primary border-b-2 border-accent">
-                PostId
+                Post Name
               </TableHeadCell>
               <TableHeadCell className="dark:bg-primary  bg-slate-50  dark:text-white text-primary border-b-2 border-accent">
-                UserId
+                User Name
               </TableHeadCell>
               <TableHeadCell className="dark:bg-primary  bg-slate-50  dark:text-white text-primary border-b-2 border-accent">
                 Delete
@@ -118,8 +118,10 @@ export default function DashComments() {
                   </TableCell>
                   <TableCell>{comment.content}</TableCell>
                   <TableCell>{comment.numberOfLikes}</TableCell>
-                  <TableCell>{comment.postId}</TableCell>
-                  <TableCell>{comment.userId}</TableCell>
+                  <TableCell>{comment.postId?.title}</TableCell>
+                  <TableCell>
+                    {comment.userId ? comment.userId.username : "deleted user"}
+                  </TableCell>
                   <TableCell>
                     <span
                       onClick={() => {
@@ -152,9 +154,10 @@ export default function DashComments() {
         onClose={() => setShowModal(false)}
         popup
         size="md"
+        className="dark:bg-black/70"
       >
-        <ModalHeader />
-        <ModalBody>
+        <ModalHeader className="dark:bg-primary" />
+        <ModalBody className="dark:bg-primary">
           <div className="text-center">
             <HiOutlineExclamationCircle className="h-14 w-14 text-gray-400 dark:text-gray-200 mb-4 mx-auto" />
             <h3 className="mb-5 text-lg text-gray-500 dark:text-gray-400">

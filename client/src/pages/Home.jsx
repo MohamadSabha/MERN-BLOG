@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import CallToAction from "../components/CallToAction";
+import CallToAction from "../components/CallToActionHome";
 import { useEffect, useState } from "react";
 import PostCard from "../components/PostCard";
 
@@ -18,7 +18,72 @@ export default function Home() {
   return (
     <div>
       {/* Hero Section */}
-      <div className="animate-fade-in relative bg-gradient-to-br from-gray-800 to-indigo-900 h-[350px] flex items-center justify-center mb-10 rounded-b-3xl shadow-lg">
+      <div class="relative py-16">
+        <div
+          aria-hidden="true"
+          class="absolute inset-0 h-max w-full m-auto grid grid-cols-2 -space-x-52 opacity-40 dark:opacity-20"
+        >
+          <div class="blur-[106px] h-56 bg-gradient-to-br from-red-400 to-yellow-400 "></div>
+          <div class="blur-[106px] h-56 bg-gradient-to-br from-red-400 to-yellow-400 "></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 md:px-12 xl:px-6">
+          <div class="relative">
+            <div class="mt-6 m-auto space-y-6 md:w-8/12 lg:w-7/12">
+              <h1 class="text-center text-4xl font-bold text-gray-800 dark:text-white md:text-5xl">
+                Welcome to the Full Stack MERN Blog
+              </h1>
+              <div class="flex items-center justify-center -space-x-2">
+                <img
+                  loading="lazy"
+                  width="400"
+                  height="400"
+                  src="https://cdn.freebiesupply.com/logos/large/2x/react-1-logo-png-transparent.png"
+                  alt="member photo"
+                  class="h-8 w-8 rounded-full object-cover"
+                />
+                <img
+                  loading="lazy"
+                  width="200"
+                  height="200"
+                  src="https://cdn.freebiesupply.com/logos/large/2x/react-1-logo-png-transparent.png"
+                  alt="member photo"
+                  class="h-12 w-12 rounded-full object-cover"
+                />
+                <img
+                  loading="lazy"
+                  width="200"
+                  height="200"
+                  src="https://cdn.freebiesupply.com/logos/large/2x/react-1-logo-png-transparent.png"
+                  alt="member photo"
+                  class="z-10 h-16 w-16 rounded-full object-cover"
+                />
+                <img
+                  loading="lazy"
+                  width="200"
+                  height="200"
+                  src="https://cdn.freebiesupply.com/logos/large/2x/react-1-logo-png-transparent.png"
+                  alt="member photo"
+                  class="relative h-12 w-12 rounded-full object-cover"
+                />
+                <img
+                  loading="lazy"
+                  width="200"
+                  height="200"
+                  src="https://randomuser.me/api/portraits/women/34.jpg"
+                  alt="member photo"
+                  class="h-8 w-8 rounded-full object-cover"
+                />
+              </div>
+              <p class="text-center text-xl text-gray-600 dark:text-gray-300">
+                Explore articles, tutorials, and resources to grow as a
+                developer.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* <div className="animate-fade-in relative bg-gradient-to-br from-gray-800 to-indigo-900 h-[350px] flex items-center justify-center mb-10 rounded-b-3xl shadow-lg">
         <img
           src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1200&q=80"
           alt="Blog Hero"
@@ -32,14 +97,7 @@ export default function Home() {
             Explore articles, tutorials, and resources to grow as a developer.
           </p>
         </div>
-      </div>
-
-      {/* Call To Action */}
-      <div className="max-w-3xl mx-auto mb-10 animate-fade-in delay-400">
-        <div className="bg-white rounded-xl shadow-lg p-6">
-          <CallToAction />
-        </div>
-      </div>
+      </div> */}
 
       {/* Recent Posts */}
       <div className="max-w-6xl mx-auto p-3 flex flex-col gap-8 py-3 animate-fade-in delay-500">
@@ -68,7 +126,7 @@ export default function Home() {
             <div className="relative z-10 text-center px-6">
               <Link
                 to="/search"
-                className="relative inline-flex items-center justify-center p-0.5  me-2 overflow-hidden text-sm font-medium rounded-lg bg-gradient-to-r from-red-500 to-yellow-400 group shadow transition-all duration-300 ease-in-out hover:brightness-90"
+                className="relative inline-flex items-center justify-center p-0.5  me-2 overflow-hidden text-sm font-medium rounded-lg bg-gradient-to-r from-red-700 to-yellow-600 group shadow transition-all duration-300 ease-in-out hover:brightness-90"
               >
                 <span className="relative px-5 py-2.5"> View all posts</span>
               </Link>
@@ -76,6 +134,9 @@ export default function Home() {
           </div>
         )}
       </div>
+      {/* Call To Action */}
+      <div className="rounded-xl shadow-lg p-6"></div>
+      <CallToAction />
 
       {/* Add some subtle fade-in animation */}
       <style>
