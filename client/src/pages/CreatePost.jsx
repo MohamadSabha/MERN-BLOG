@@ -8,7 +8,7 @@ import {
   TextInput,
 } from "flowbite-react";
 import { Editor } from "@tinymce/tinymce-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function CreatePost() {
@@ -20,6 +20,20 @@ export default function CreatePost() {
   const [publishError, setPublishError] = useState(null);
 
   const navigate = useNavigate();
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await fetch("/api/category/getCategories");
+        const data = await res.json();
+        setCategories(data.categories); // depending on backend response
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchCategories();
+  }, []);
 
   const handleUpdloadImage = async () => {
     if (!imageFile) {
@@ -97,7 +111,7 @@ export default function CreatePost() {
               setFormData({ ...formData, title: e.target.value })
             }
           />
-          <Select
+          {/* <Select
             onChange={(e) =>
               setFormData({ ...formData, category: e.target.value })
             }
@@ -106,7 +120,35 @@ export default function CreatePost() {
             <option value="javascript">JavaScript</option>
             <option value="reactjs">React.js</option>
             <option value="nextjs">Next.js</option>
-          </Select>
+          </Select> */}
+        </div>
+        <div className="flex flex-wrap gap-4">
+          {categories.map((cat) => (
+            <div key={cat._id} className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                id={cat._id}
+                value={cat._id}
+                className="text-accent"
+                checked={formData.categories?.includes(cat._id) || false}
+                onChange={(e) => {
+                  const selected = formData.categories || [];
+                  if (e.target.checked) {
+                    setFormData({
+                      ...formData,
+                      categories: [...selected, cat._id],
+                    });
+                  } else {
+                    setFormData({
+                      ...formData,
+                      categories: selected.filter((id) => id !== cat._id),
+                    });
+                  }
+                }}
+              />
+              <label htmlFor={cat._id}>{cat.name}</label>
+            </div>
+          ))}
         </div>
         <div className="flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3">
           <FileInput

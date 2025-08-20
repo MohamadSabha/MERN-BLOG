@@ -9,6 +9,8 @@ import UserRoutes from "./routes/user.route.js";
 import AuthRoutes from "./routes/auth.route.js";
 import PostRoutes from "./routes/post.route.js";
 import CommentRoutes from "./routes/comment.route.js";
+import categoryRoutes from "./routes/Category.route.js";
+
 import cookieParser from "cookie-parser";
 import path from "path";
 
@@ -49,6 +51,7 @@ app.use("/api/user", UserRoutes);
 app.use("/api/auth", AuthRoutes);
 app.use("/api/post", PostRoutes);
 app.use("/api/comment", CommentRoutes);
+app.use("/api/category", categoryRoutes);
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, "client/dist")));

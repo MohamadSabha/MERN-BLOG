@@ -1,7 +1,7 @@
 import { Button, Spinner } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import CallToAction from "../components/CallToAction";
+import CallToAction from "../components/delete- CallToAction";
 import CommentSection from "../components/CommentSection";
 import PostCard from "../components/PostCard";
 import { useSelector } from "react-redux";
@@ -71,14 +71,16 @@ export default function PostPage() {
       <h1 className="text-3xl mt-10 p-3 text-center font-serif max-w-2xl mx-auto lg:text-4xl">
         {post && post.title}
       </h1>
-      <Link
-        to={`/search?category=${post && post.category}`}
-        className="self-center mt-5"
-      >
-        <Button color="gray" pill size="xs">
-          {post && post.category}
-        </Button>
-      </Link>
+
+      <div className="flex flex-wrap gap-2 self-center mt-5">
+        {post?.categories?.map((cat) => (
+          <Link key={cat._id} to={`/search?category=${cat._id}`}>
+            <Button color="gray" pill size="xs">
+              {cat.name}
+            </Button>
+          </Link>
+        ))}
+      </div>
       <img
         src={post && post.image}
         alt={post && post.title}

@@ -21,10 +21,12 @@ export const create = async (req, res, next) => {
     ...req.body,
     slug,
     userId: req.user.id,
+    categories: req.body.categories, // expect array of IDs
   });
   try {
     const savedPost = await newPost.save();
-    res.status(201).json(savedPost);
+    const populatedPost = await savedPost.populate("categories", "name slug");
+    res.status(201).json(populatedPost);
   } catch (error) {
     next(error);
   }
@@ -36,7 +38,7 @@ export const getPosts = async (req, res, next) => {
     const sortDirection = req.query.order === "asc" ? 1 : -1;
     const posts = await Post.find({
       ...(req.query.userId && { userId: req.query.userId }),
-      ...(req.query.category && { category: req.query.category }),
+      ...(req.query.category && { categories: req.query.category }),
       ...(req.query.slug && { slug: req.query.slug }),
       ...(req.query.postId && { _id: req.query.postId }),
       ...(req.query.searchTerm && {
@@ -48,7 +50,8 @@ export const getPosts = async (req, res, next) => {
     })
       .sort({ updatedAt: sortDirection })
       .skip(startIndex)
-      .limit(limit);
+      .limit(limit)
+      .populate("categories", "name slug"); // populate only name & slug
 
     const totalPosts = await Post.countDocuments();
 
@@ -99,7 +102,7 @@ export const updatePost = async (req, res, next) => {
         $set: {
           title: req.body.title,
           content: req.body.content,
-          category: req.body.category,
+          categories: req.body.categories, // expect array of IDs
           image: req.body.image,
         },
       },

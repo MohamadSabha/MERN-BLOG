@@ -107,6 +107,18 @@ export default function DashNavbar() {
                 Comments
               </button>
             </Link>
+            <Link to="/dashboard?tab=Categories">
+              <button
+                className={`flex items-center gap-2 rounded-lg px-4 py-2 transition-colors duration-200 ${
+                  tab === "Categories"
+                    ? " text-accent  dark:text-accent border-b-2 border-orange-500"
+                    : " dark:hover:text-accent"
+                }`}
+              >
+                <HiAnnotation />
+                Categories
+              </button>
+            </Link>
           </>
         )}
         {/* <button

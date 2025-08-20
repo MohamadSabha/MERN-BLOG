@@ -1,3 +1,4 @@
+import { Button } from "flowbite-react";
 import { Link } from "react-router-dom";
 
 export default function PostCard({ post }) {
@@ -12,7 +13,17 @@ export default function PostCard({ post }) {
       </Link>
       <div className="p-3 flex flex-col gap-2">
         <p className="text-lg font-semibold line-clamp-2">{post.title}</p>
-        <span className="italic text-sm">{post.category}</span>
+
+        <div className="flex flex-wrap gap-2 self-center mt-5">
+          {post?.categories?.map((cat) => (
+            <Link key={cat._id} to={`/search?category=${cat._id}`}>
+              <Button color="gray" pill size="xs">
+                {cat.name}
+              </Button>
+            </Link>
+          ))}
+        </div>
+        {/* <span className="italic text-sm">{post.category}</span> */}
         <Link
           to={`/post/${post.slug}`}
           className="z-10 group-hover:bottom-0 absolute bottom-[-200px] left-0 right-0 

@@ -20,34 +20,87 @@ export default function UpdatePost() {
   // const [imageFileUrl, setImageFileUrl] = useState(null);
   const [imageFileUploading, setimageFileUploading] = useState(false);
   const [imageUploadError, setImageUploadError] = useState(null);
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({ category: [] });
   const [publishError, setPublishError] = useState(null);
+  const [categories, setCategories] = useState([]);
 
   const navigate = useNavigate();
 
   const { postId } = useParams();
   useEffect(() => {
-    try {
-      const fetchPost = async () => {
-        const res = await fetch(`/api/post/getposts?postId=${postId}`);
-        const data = await res.json();
-        if (!res.ok) {
-          console.log(data.message);
-          setPublishError(data.message);
+    const fetchPostAndCategories = async () => {
+      try {
+        const postRes = await fetch(`/api/post/getposts?postId=${postId}`);
+        const postData = await postRes.json();
+        if (!postRes.ok) {
+          console.log(postData.message);
+          setPublishError(postData.message);
           return;
         }
-        if (res.ok) {
-          setPublishError(null);
-          setFormData(data.posts[0]);
-        }
-      };
 
-      fetchPost();
-    } catch (error) {
-      console.log(error.message);
-    }
+        const allCategoriesRes = await fetch("/api/category/getCategories");
+        const categoriesData = await allCategoriesRes.json();
+
+        setCategories(categoriesData.categories);
+
+        const categoryIds = postData.posts[0].categories.map((c) => c._id);
+        setFormData({ ...postData.posts[0], category: categoryIds });
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetchPostAndCategories();
   }, [postId]);
 
+  // useEffect(() => {
+  //   try {
+  //     const fetchPost = async () => {
+  //       const res = await fetch(`/api/post/getposts?postId=${postId}`);
+  //       const data = await res.json();
+  //       if (!res.ok) {
+  //         console.log(data.message);
+  //         setPublishError(data.message);
+  //         return;
+  //       }
+  //       if (res.ok) {
+  //         const post = data.posts[0];
+  //         // Ensure categories is always an array of IDs
+  //         let categoryArray = [];
+  //         if (Array.isArray(post.categories)) {
+  //           // If it's an array of objects [{_id:"...", name:"..."}], extract the _id
+  //           categoryArray = post.categories.map((c) =>
+  //             typeof c === "string" ? c : c._id
+  //           );
+  //         } else if (typeof post.categories === "string") {
+  //           categoryArray = [post.categories];
+  //         }
+
+  //         setFormData({ ...post, category: categoryArray });
+
+  //         //   setFormData({
+  //         //     ...data.posts[0],
+  //         //     category: data.posts[0].categories, // ensure it's always an array
+  //         //   });
+  //       }
+  //     };
+
+  //     fetchPost();
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // }, [postId]);
+  // useEffect(() => {
+  //   const fetchCategories = async () => {
+  //     try {
+  //       const res = await fetch("/api/category/getCategories");
+  //       const data = await res.json();
+  //       setCategories(data.categories); // depending on backend response
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+  //   fetchCategories();
+  // }, []);
   const handleUpdloadImage = async () => {
     if (!imageFile) {
       setImageUploadError("Please select an image");
@@ -95,7 +148,12 @@ export default function UpdatePost() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(formData),
+          body: JSON.stringify({
+            title: formData.title,
+            content: formData.content,
+            categories: formData.category, // now this is array of IDs
+            image: formData.image,
+          }),
         }
       );
       const data = await res.json();
@@ -128,7 +186,7 @@ export default function UpdatePost() {
               setFormData({ ...formData, title: e.target.value })
             }
           />
-          <Select
+          {/* <Select
             value={formData.category || ""}
             onChange={(e) =>
               setFormData({ ...formData, category: e.target.value })
@@ -138,7 +196,26 @@ export default function UpdatePost() {
             <option value="javascript">JavaScript</option>
             <option value="reactjs">React.js</option>
             <option value="nextjs">Next.js</option>
-          </Select>
+          </Select> */}
+        </div>
+        <div className="flex flex-wrap gap-4">
+          {categories.map((cat) => (
+            <div key={cat._id} className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                className="text-accent"
+                value={cat._id} // use ID, not name
+                checked={formData.category?.includes(cat._id)}
+                onChange={(e) => {
+                  const updatedCategories = e.target.checked
+                    ? [...formData.category, cat._id] // add the ID
+                    : formData.category.filter((c) => c !== cat._id); // remove the ID
+                  setFormData({ ...formData, category: updatedCategories });
+                }}
+              />
+              <label>{cat.name}</label>
+            </div>
+          ))}
         </div>
         <div className="flex gap-4 items-center justify-between border border-y-orange-600 border-x-accent rounded-md bx-3 p-3">
           <FileInput
