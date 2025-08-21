@@ -124,15 +124,17 @@ export default function DashUsers() {
                     )}
                   </TableCell>
                   <TableCell>
-                    <span
+                    <Button
+                      outline
                       onClick={() => {
                         setShowModal(true);
                         setUserIdToDelete(user._id);
                       }}
-                      className="font-medium text-red-500 hover:underline cursor-pointer"
+                      className="font-medium text-red-500 hover:underline hover:bg-red-800 cursor-pointer border-red-600"
+                      size="sm"
                     >
                       Delete
-                    </span>
+                    </Button>
                   </TableCell>
                 </TableRow>
               </TableBody>

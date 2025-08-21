@@ -194,26 +194,31 @@ export default function DashCategories() {
                       : "deleted user"}
                   </TableCell> */}
                   <TableCell>
-                    <span
+                    <Button
+                      outline
                       onClick={() => {
                         setShowEditModal(true);
                         setCategoryToEdit(category);
                       }}
-                      className="font-medium text-red-500 hover:underline cursor-pointer"
+                      className=" hover:bg-orange-500 Dark:hover:text-white dark:hover:border-orange-500 px-4 py-5"
+                      size="sm"
                     >
+                      {" "}
                       Edit
-                    </span>
+                    </Button>
                   </TableCell>
                   <TableCell>
-                    <span
+                    <Button
+                      outline
                       onClick={() => {
                         setShowDeleteModal(true);
                         setCategoryIdToDelete(category._id);
                       }}
-                      className="font-medium text-red-500 hover:underline cursor-pointer"
+                      className="font-medium text-red-500 hover:underline hover:bg-red-800 cursor-pointer border-red-600"
+                      size="sm"
                     >
                       Delete
-                    </span>
+                    </Button>
                   </TableCell>
                 </TableRow>
               </TableBody>

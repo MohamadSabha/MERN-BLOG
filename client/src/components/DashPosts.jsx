@@ -147,24 +147,38 @@ export default function DashPosts() {
                       {post.title}
                     </Link>
                   </TableCell>
-                  <TableCell>{post.category}</TableCell>
+                  <div className="flex flex-wrap gap-2 self-center mt-5">
+                    {post?.categories?.map((cat) => (
+                      <Link key={cat._id} to={`/search?category=${cat._id}`}>
+                        <Button color="gray" pill size="xs">
+                          {cat.name}
+                        </Button>
+                      </Link>
+                    ))}
+                  </div>
                   <TableCell>
-                    <span
+                    <Button
+                      outline
                       onClick={() => {
                         setShowModal(true);
                         setPostIdToDelete(post._id);
                       }}
-                      className="font-medium text-red-500 hover:underline cursor-pointer"
+                      className="font-medium text-red-500 hover:underline hover:bg-red-800 cursor-pointer border-red-600"
+                      size="sm"
                     >
                       Delete
-                    </span>
+                    </Button>
                   </TableCell>
                   <TableCell>
-                    <Link
-                      className="text-teal-500 hover:underline"
-                      to={`/update-post/${post._id}`}
-                    >
-                      <span>Edit</span>
+                    <Link to={`/update-post/${post._id}`}>
+                      <Button
+                        outline
+                        className=" hover:bg-orange-500 Dark:hover:text-white dark:hover:border-orange-500 px-4 py-5"
+                        size="sm"
+                      >
+                        {" "}
+                        Edit
+                      </Button>
                     </Link>
                   </TableCell>
                 </TableRow>
