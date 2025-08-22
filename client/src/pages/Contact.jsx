@@ -34,7 +34,17 @@ export default function Contact() {
 
   return (
     <div className="max-w-xl mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-4">Contact Me</h1>
+      {/* Headline */}
+      <h1 className="text-3xl font-bold mb-2">Contact Me</h1>
+
+      {/* Subheading */}
+      <p className="text-gray-700 mb-6">
+        Have a question about my projects, want to collaborate, or just want to
+        say hi? Fill out the form below and I’ll get back to you as soon as
+        possible.
+      </p>
+
+      {/* Contact Form */}
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
           name="name"
@@ -67,11 +77,18 @@ export default function Contact() {
           disabled={status.sending}
           className="bg-blue-600 text-white px-4 py-2 rounded"
         >
-          {status.sending ? "Sending..." : "Send"}
+          {status.sending ? "Sending..." : "Send Message"}
         </button>
       </form>
+
+      {/* Status Messages */}
       {status.ok && <p className="text-green-600 mt-3">{status.msg}</p>}
       {status.ok === false && <p className="text-red-600 mt-3">{status.msg}</p>}
+
+      {/* Optional Note */}
+      <p className="text-gray-500 mt-4 text-sm">
+        Your message is important to me. I usually reply within 24 hours.
+      </p>
     </div>
   );
 }

@@ -152,6 +152,16 @@ export default function Header() {
             >
               Projects
             </Link>
+            <Link
+              to="/contact"
+              className={`font-medium px-3 py-2 rounded-lg transition-colors ${
+                path === "/contact"
+                  ? " text-accent  dark:text-accent border-b-2 border-accent"
+                  : " dark:hover:text-accent"
+              }`}
+            >
+              contact
+            </Link>
           </nav>
           <form onSubmit={handleSubmit} className="flex items-center gap-2">
             <input
@@ -247,8 +257,8 @@ export default function Header() {
               to="/"
               className={`font-medium px-3 py-2 rounded-lg transition-colors ${
                 path === "/"
-                  ? "bg-yellow-400 text-black dark:bg-yellow-400 dark:text-black shadow"
-                  : "hover:bg-yellow-100 dark:hover:bg-yellow-700"
+                  ? " text-accent  dark:text-accent border-b-2 border-accent"
+                  : " dark:hover:text-accent"
               }`}
             >
               Home
@@ -257,8 +267,8 @@ export default function Header() {
               to="/about"
               className={`font-medium px-3 py-2 rounded-lg transition-colors ${
                 path === "/about"
-                  ? "bg-yellow-400 text-black dark:bg-yellow-400 dark:text-black shadow"
-                  : "hover:bg-yellow-100 dark:hover:bg-yellow-700"
+                  ? " text-accent  dark:text-accent border-b-2 border-accent"
+                  : " dark:hover:text-accent"
               }`}
             >
               About
@@ -267,13 +277,22 @@ export default function Header() {
               to="/projects"
               className={`font-medium px-3 py-2 rounded-lg transition-colors ${
                 path === "/projects"
-                  ? "bg-yellow-400 text-black dark:bg-yellow-400 dark:text-black shadow"
-                  : "hover:bg-yellow-100 dark:hover:bg-yellow-700"
+                  ? " text-accent  dark:text-accent border-b-2 border-accent"
+                  : " dark:hover:text-accent"
               }`}
             >
               Projects
             </Link>
-
+            <Link
+              to="/contact"
+              className={`font-medium px-3 py-2 rounded-lg transition-colors ${
+                path === "/contact"
+                  ? " text-accent  dark:text-accent border-b-2 border-accent"
+                  : " dark:hover:text-accent"
+              }`}
+            >
+              contact
+            </Link>
             <Link
               to="/dashboard?tab=profile"
               className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 
