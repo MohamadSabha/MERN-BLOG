@@ -14,6 +14,7 @@ import CreatePost from "./pages/CreatePost";
 import UpdatePost from "./pages/UpdatePost";
 import PostPage from "./pages/PostPage";
 import Search from "./pages/Search";
+import Contact from "./pages/Contact";
 export default function App() {
   return (
     <BrowserRouter>
@@ -22,6 +23,8 @@ export default function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/Contact" element={<Contact />} />
+
           <Route path="/About" element={<About />} />
           <Route path="/Sign-in" element={<Signin />} />
           <Route path="/Sign-up" element={<Signup />} />
