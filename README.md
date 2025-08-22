@@ -25,55 +25,6 @@ This project demonstrates modern web development practices including authenticat
 - 💬 Comment system (create/edit/delete by admins)
 - 📊 Admin dashboard (manage users, posts, categories, comments)
 
-Authentication & Authorization
-
-JWT-based authentication
-
-Google OAuth login
-
-Protected routes
-
-Blog Management
-
-Create, edit, and delete posts
-
-Rich text editing with TinyMCE
-
-Categories (dynamic, admin-controlled)
-
-Comment system with edit/delete permissions
-
-Admin Dashboard
-
-Manage users, posts, comments, and categories
-
-Role-based access (admin vs. regular users)
-
-File Uploads
-
-Upload images/files using Cloudinary
-
-UI/UX
-
-Built with React, TailwindCSS, Flowbite
-
-Clean and responsive design
-
-Backend
-
-Node.js & Express.js
-
-MongoDB with Mongoose validation
-
-Error handling middleware & async/await pattern
-
-Additional Features
-
-Contact form with email notifications via Brevo
-
-Confirmation email for users & notification email to admin
-
-
 ## Tech Stack
 **Frontend:** React, Redux, TailwindCSS, Flowbite  
 **Backend:** Node.js, Express.js, JWT, Google OAuth  
@@ -91,26 +42,26 @@ Confirmation email for users & notification email to admin
    cd mern-blog
 
 2. Installation dependencies 
-
-cd client && npm install
-cd ../server && npm install
+   ```bash
+   cd client && npm install
+   cd ../server && npm install
 
 3. Create a .env file in the server folder and add:
-MONGO_URI=your_mongodb_url
-JWT_SECRET=your_secret_key
-CLOUDINARY_CLOUD_NAME=xxxx
-CLOUDINARY_API_KEY=xxxx
-CLOUDINARY_API_SECRET=xxxx
-BREVO_API_KEY=xxxx
-
+   ```bash
+   MONGO_URI=your_mongodb_url
+   JWT_SECRET=your_secret_key
+   CLOUDINARY_CLOUD_NAME=xxxx
+   CLOUDINARY_API_KEY=xxxx
+   CLOUDINARY_API_SECRET=xxxx
+   BREVO_API_KEY=xxxx
 
 4.Start the dev servers:
-# backend
-cd server && npm run dev
-# frontend
-cd client && npm start
-
-
+## backend
+      ```bash
+      cd server && npm run dev
+## frontend
+      ```bash
+      cd client && npm start
 ---
 
 ###  **Usage / Demo Instructions**
