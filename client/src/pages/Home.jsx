@@ -3,6 +3,12 @@ import CallToAction from "../components/CallToActionHome";
 import { useEffect, useState } from "react";
 import PostCard from "../components/PostCard";
 
+import reactimg from "../assets/react.png";
+import nodeimg from "../assets/Node.png";
+import mongoimg from "../assets/mongodb.png";
+import expressimg from "../assets/express.png";
+import firebaseimg from "../assets/firebase.png";
+
 export default function Home() {
   const [posts, setPosts] = useState([]);
 
@@ -38,7 +44,7 @@ export default function Home() {
                   loading="lazy"
                   width="400"
                   height="400"
-                  src="https://cdn.freebiesupply.com/logos/large/2x/react-1-logo-png-transparent.png"
+                  src={mongoimg}
                   alt="member photo"
                   class="h-8 w-8 rounded-full object-cover"
                 />
@@ -46,7 +52,7 @@ export default function Home() {
                   loading="lazy"
                   width="200"
                   height="200"
-                  src="https://cdn.freebiesupply.com/logos/large/2x/react-1-logo-png-transparent.png"
+                  src={nodeimg}
                   alt="member photo"
                   class="h-12 w-12 rounded-full object-cover"
                 />
@@ -54,7 +60,7 @@ export default function Home() {
                   loading="lazy"
                   width="200"
                   height="200"
-                  src="https://cdn.freebiesupply.com/logos/large/2x/react-1-logo-png-transparent.png"
+                  src={reactimg}
                   alt="member photo"
                   class="z-10 h-16 w-16 rounded-full object-cover"
                 />
@@ -62,15 +68,15 @@ export default function Home() {
                   loading="lazy"
                   width="200"
                   height="200"
-                  src="https://cdn.freebiesupply.com/logos/large/2x/react-1-logo-png-transparent.png"
+                  src={expressimg}
                   alt="member photo"
-                  class="relative h-12 w-12 rounded-full object-cover"
+                  class="relative h-14 w-12 rounded-full object-cover"
                 />
                 <img
                   loading="lazy"
                   width="200"
                   height="200"
-                  src="https://randomuser.me/api/portraits/women/34.jpg"
+                  src={firebaseimg}
                   alt="member photo"
                   class="h-8 w-8 rounded-full object-cover"
                 />
