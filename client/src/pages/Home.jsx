@@ -39,6 +39,7 @@ export default function Home() {
               <h1 class="text-center text-4xl font-bold text-gray-800 dark:text-white md:text-5xl">
                 Welcome to the Full Stack MERN Blog
               </h1>
+              {/* icons */}
               <div class="flex items-center justify-center -space-x-2">
                 <img
                   loading="lazy"
