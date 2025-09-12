@@ -1,4 +1,3 @@
-
 # MERN Blog Platform
 
 A modern full-stack blog platform built with MongoDB, Express, React, and Node.js. Features user authentication, role-based access, admin dashboards, Cloudinary image uploads, and a rich text editor for posts.
