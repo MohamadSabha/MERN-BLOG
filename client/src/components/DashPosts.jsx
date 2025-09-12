@@ -85,19 +85,23 @@ export default function DashPosts() {
 
   return (
     <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">
+      {CurrentUser.isAdmin ? (
+        <div className="flex justify-center my-4">
+          <Link to="/create-post">
+            <Button
+              type="button"
+              className="px-4 py-2 rounded-lg bg-gradient-to-r from-red-500 to-yellow-400 text-white shadow-sm transition-all duration-300 hover:brightness-90"
+            >
+              Create a new post
+            </Button>
+          </Link>
+        </div>
+      ) : (
+        <p>You are not admin</p>
+      )}
+
       {CurrentUser.isAdmin && userPosts.length > 0 ? (
         <>
-          <div className="flex justify-center my-4">
-            <Link to="/create-post">
-              <Button
-                type="button"
-                className="px-4 py-2 rounded-lg bg-gradient-to-r from-red-500 to-yellow-400 text-white shadow-sm transition-all duration-300 hover:brightness-90"
-              >
-                Create a new post
-              </Button>
-            </Link>
-          </div>
-
           <Table hoverable className="shadow-md">
             <TableHead>
               <TableHeadCell className="dark:bg-primary  bg-slate-50  dark:text-white text-primary border-b-2 border-accent">

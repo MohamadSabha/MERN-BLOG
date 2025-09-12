@@ -107,7 +107,7 @@ export default function Home() {
       </div> */}
 
       {/* Recent Posts */}
-      <div className="max-w-6xl mx-auto p-3 flex flex-col gap-8 py-3 animate-fade-in delay-500">
+      <div className=" max-w-6xl mx-auto p-3 flex flex-col gap-8 py-3 animate-fade-in delay-500">
         {/* Section Divider */}
         <div className="flex items-center justify-center my-8 animate-fade-in delay-600">
           <div className="flex-grow h-0.5 bg-yellow-400 mx-4" />

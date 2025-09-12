@@ -89,15 +89,17 @@ export default function Search() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const urlParams = new URLSearchParams(location.search);
-    urlParams.set("searchTerm", sidebarData.searchTerm);
+    // Only add searchTerm if it exists
+    if (sidebarData.searchTerm?.trim()) {
+      urlParams.set("searchTerm", sidebarData.searchTerm.trim());
+    }
+
+    // Always set sort
     urlParams.set("sort", sidebarData.sort);
-    // urlParams.set("category", sidebarData.category);
 
     // Only send category if it's not "all"
     if (sidebarData.category !== "all") {
       urlParams.set("category", sidebarData.category);
-    } else {
-      urlParams.delete("category");
     }
     const searchQuery = urlParams.toString();
     navigate(`/search?${searchQuery}`);
@@ -199,7 +201,7 @@ export default function Search() {
       <h1 className="text-3xl font-semibold border-b border-gray-200 p-3 mb-4">
         Posts results:
       </h1>
-      <div className="p-1 flex flex-wrap gap-2">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {!loading && posts.length === 0 && (
           <p className="text-xl text-gray-500">No posts found.</p>
         )}
