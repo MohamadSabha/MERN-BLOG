@@ -13,7 +13,7 @@ const router = express.Router();
 router.post("/create", verifyToken, createCategory);
 
 // Get all categories
-router.get("/getCategories", verifyToken, getallCategories);
+router.get("/getCategories", getallCategories);
 
 // Update a category
 router.put("/editCategory/:CategoryId", verifyToken, editCategory);

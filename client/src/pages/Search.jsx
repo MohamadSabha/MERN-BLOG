@@ -7,7 +7,7 @@ export default function Search() {
   const [sidebarData, setSidebarData] = useState({
     searchTerm: "",
     sort: "desc",
-    category: "uncategorized",
+    category: "all",
   });
 
   console.log(sidebarData);
@@ -15,15 +15,32 @@ export default function Search() {
   const [loading, setLoading] = useState(false);
   const [showMore, setShowMore] = useState(false);
 
+  // state for categories
+  const [categories, setCategories] = useState([]);
+
   const location = useLocation();
 
   const navigate = useNavigate();
-
+  // Fetch categories on mount
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await fetch("/api/category/getCategories");
+        if (res.ok) {
+          const data = await res.json();
+          setCategories(data.categories || []);
+        }
+      } catch (err) {
+        console.error("Failed to fetch categories", err);
+      }
+    };
+    fetchCategories();
+  }, []);
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const searchTermFromUrl = urlParams.get("searchTerm");
     const sortFromUrl = urlParams.get("sort");
-    const categoryFromUrl = urlParams.get("category");
+    const categoryFromUrl = urlParams.get("category") || "all";
     if (searchTermFromUrl || sortFromUrl || categoryFromUrl) {
       setSidebarData({
         ...sidebarData,
@@ -74,7 +91,14 @@ export default function Search() {
     const urlParams = new URLSearchParams(location.search);
     urlParams.set("searchTerm", sidebarData.searchTerm);
     urlParams.set("sort", sidebarData.sort);
-    urlParams.set("category", sidebarData.category);
+    // urlParams.set("category", sidebarData.category);
+
+    // Only send category if it's not "all"
+    if (sidebarData.category !== "all") {
+      urlParams.set("category", sidebarData.category);
+    } else {
+      urlParams.delete("category");
+    }
     const searchQuery = urlParams.toString();
     navigate(`/search?${searchQuery}`);
   };
@@ -144,23 +168,25 @@ export default function Search() {
             id="category"
             className="w-full sm:w-[140px]"
           >
-            <option value="uncategorized">Uncategorized</option>
-            <option value="reactjs">React.js</option>
-            <option value="nextjs">Next.js</option>
-            <option value="javascript">JavaScript</option>
+            <option value="all">All</option>
+            {categories.map((cat) => (
+              <option key={cat._id} value={cat._id}>
+                {cat.name}
+              </option>
+            ))}
           </Select>
         </div>
 
         <button
           type="submit"
-          class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden 
+          className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden 
             text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-yellow-400 
             to-yellow-600 group-hover:from-yellow-400 group-hover:to-yellow-600 hover:text-white 
             dark:text-white focus:ring-4 focus:outline-none focus:ring-yellow-200 
             dark:focus:ring-yellow-800"
         >
           <span
-            class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white 
+            className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white 
               dark:bg-gray-900 rounded-md group-hover:bg-transparent 
               group-hover:dark:bg-transparent"
           >
