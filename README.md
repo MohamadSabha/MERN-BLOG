@@ -41,11 +41,13 @@ Build, manage, and explore blogs with a professional full-stack experience.
    ```bash
    git clone https://github.com/username/mern-blog.git
    cd mern-blog
+   ```
 
 2. Installation dependencies 
    ```bash
    cd client && npm install
    cd ../server && npm install
+   ```
 
 3. Create a .env file in the server folder and add:
    ```bash
@@ -55,15 +57,16 @@ Build, manage, and explore blogs with a professional full-stack experience.
    CLOUDINARY_API_KEY=xxxx
    CLOUDINARY_API_SECRET=xxxx
    BREVO_API_KEY=xxxx
+   ```
 
 4.Start the dev servers:
 ## backend
       ```bash
       cd server && npm run dev
 ## frontend
-      ```bash
-      cd client && npm start
----
+   ```bash
+   cd client && npm start
+   ```
 
 ###  **Usage / Demo Instructions**
 - How to test as an admin vs. normal user.
@@ -75,4 +78,27 @@ To access the admin dashboard, log in with an admin account (credentials provide
 
 Create, edit, and manage posts, categories, comments, and users.
 
-🖼️ Screenshots
+## 🔗 Links
+
+- 🌐 **Live Demo**: [Try it here](https://mhd-mern-blog.onrender.com/)
+- 📄 **Portfolio Case Page**: [Read the full write-up](https://mhdsabha.com/projects/code-nest-a-full-stack-mern-blog/)
+
+
+
+## Screenshots
+
+1. **Home / Landing Page**  
+   Clean, responsive landing page showcasing the blog’s hero section, featured technologies, and latest posts. Fully responsive across devices.
+   <img width="1900" height="874" alt="image" src="https://github.com/user-attachments/assets/db87fca6-9e40-42c5-b0fd-01eee27c2349" />
+
+2. **Admin Dashboard**  
+   Full control panel for managing posts, categories, and users. Demonstrates full MERN stack CRUD operations, role-based access, and responsive admin interface.
+<img width="1892" height="883" alt="image" src="https://github.com/user-attachments/assets/c2a18551-78d0-41b4-88d2-faa32ed95794" />
+
+3. **Search & Filter Page**  
+   Dynamic search and filter system with real-time results. Users can search by keywords or filter by category. Clean, responsive, and user-friendly design.
+<img width="1903" height="887" alt="image" src="https://github.com/user-attachments/assets/ca787a2e-bf96-4da4-ac8f-88e80a10073b" />
+
+4. **Comments Section**  
+   Displays user comments on posts along with admin responses. Shows user avatars, comment text, and admin replies in a clear, readable layout.
+<img width="1920" height="787" alt="image" src="https://github.com/user-attachments/assets/9f63a2c6-e0a7-4a73-9041-7ec95b928ca3" />
