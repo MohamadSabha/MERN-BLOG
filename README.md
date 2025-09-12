@@ -1,7 +1,8 @@
 # MERN Blog Platform
 
-A full-featured blog application built with the MERN stack (MongoDB, Express.js, React, Node.js).
-This project demonstrates modern web development practices including authentication, state management, file uploads, and admin dashboards.
+A modern full-stack blog platform built with MongoDB, Express, React, and Node.js. Features user authentication, role-based access, admin dashboards, Cloudinary image uploads, and a rich text editor for posts.
+
+Build, manage, and explore blogs with a professional full-stack experience.
 
 🚀 **Live Demo**: [Click here to view](https://your-app-url.com)
 
