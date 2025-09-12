@@ -61,8 +61,9 @@ Build, manage, and explore blogs with a professional full-stack experience.
 
 4.Start the dev servers:
 ## backend
-      ```bash
+   ```bash
       cd server && npm run dev
+   ```
 ## frontend
    ```bash
    cd client && npm start
