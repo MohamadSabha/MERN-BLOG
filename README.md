@@ -4,7 +4,7 @@ A modern full-stack blog platform built with MongoDB, Express, React, and Node.j
 
 Build, manage, and explore blogs with a professional full-stack experience.
 
-🚀 **Live Demo**: [Click here to view](https://your-app-url.com)
+🚀 **Live Demo**: [Click here to view](https://mhd-mern-blog.onrender.com/)
 
 ## Table of Contents
 - Features
