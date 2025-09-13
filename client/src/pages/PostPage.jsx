@@ -1,7 +1,6 @@
 import { Button, Spinner } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import CallToAction from "../components/delete- CallToAction";
 import CommentSection from "../components/CommentSection";
 import PostCard from "../components/PostCard";
 import { useSelector } from "react-redux";
@@ -96,9 +95,6 @@ export default function PostPage() {
         className="p-3 max-w-2xl mx-auto w-full post-content"
         dangerouslySetInnerHTML={{ __html: post && post.content }}
       ></div>
-      <div className="max-w-4xl mx-auto w-full">
-        <CallToAction />
-      </div>
       {CurrentUser?.isAdmin && (
         <Link
           className="text-teal-500 hover:underline"
