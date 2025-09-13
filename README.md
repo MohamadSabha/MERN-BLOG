@@ -4,7 +4,7 @@ Code Nest is a comprehensive full-stack blogging platform built with the MERN st
 This project was an intensive deep dive into full-stack development, focusing on security, scalability, and user-friendly design.
 
 
-🚀 **Live Demo**: [Click here to view](https://mhd-mern-blog.onrender.com/)
+**Live Demo**: [Click here to view](https://mhd-mern-blog.onrender.com/)
 
 
 
@@ -123,6 +123,7 @@ Email: admin@hotmail.com
 Password: admin123  
 
 ⚠️ Note: This demo account is for testing only. Some destructive actions (like deleting users or categories) may affect functionality.  
+Users can also sign up using Google OAuth or any email address (fake emails are accepted for testing purposes).
 
 
 ### 7. Optional (Production Build)  
@@ -134,24 +135,10 @@ Backend + Frontend build
 npm run build
 ```
 
+## Links
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-## 🔗 Links
-
-- 🌐 **Live Demo**: [Try it here](https://mhd-mern-blog.onrender.com/)
-- 📄 **Portfolio Case Page**: [Read the full write-up](https://mhdsabha.com/projects/code-nest-a-full-stack-mern-blog/)
+-  **Live Demo**: [Try it here](https://mhd-mern-blog.onrender.com/)
+-  **Portfolio Case Page**: [Read the full write-up](https://mhdsabha.com/projects/code-nest-a-full-stack-mern-blog/)
 
 
 
