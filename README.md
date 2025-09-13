@@ -123,6 +123,7 @@ Email: admin@hotmail.com
 Password: admin123  
 
 ⚠️ Note: This demo account is for testing only. Some destructive actions (like deleting users or categories) may affect functionality.  
+Users can also sign up using Google OAuth or any email address (fake emails are accepted for testing purposes).
 
 
 ### 7. Optional (Production Build)  
