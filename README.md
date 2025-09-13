@@ -1,83 +1,152 @@
-# MERN Blog Platform
+# Code Nest – Full-Stack MERN Blog Platform
 
-A modern full-stack blog platform built with MongoDB, Express, React, and Node.js. Features user authentication, role-based access, admin dashboards, Cloudinary image uploads, and a rich text editor for posts.
+Code Nest is a comprehensive full-stack blogging platform built with the MERN stack (MongoDB, Express, React, Node.js). Designed to emulate a real-world production application, it provides a seamless experience for both readers and content administrators. The platform includes user authentication, role-based permissions, a powerful admin dashboard, dynamic content management, and a modern, responsive UI.
+This project was an intensive deep dive into full-stack development, focusing on security, scalability, and user-friendly design.
 
-Build, manage, and explore blogs with a professional full-stack experience.
 
 🚀 **Live Demo**: [Click here to view](https://mhd-mern-blog.onrender.com/)
 
-## Table of Contents
-- Features
-- Tech Stack
-- Installation & Setup
-- Usage
-- Screenshots
-- Future Improvements
-- License
 
 
 ## Features
-- 🔐 Authentication with JWT & Google OAuth
-- 👤 User roles (Admin/User) with protected routes
-- 📂 MongoDB models with validation & relationships
-- 📝 Rich text editor (TinyMCE) for post creation
-- 🖼️ Cloudinary image upload for users & posts
-- 🗂️ Dynamic categories managed by admin
-- 💬 Comment system (create/edit/delete by admins)
-- 📊 Admin dashboard (manage users, posts, categories, comments)
+
+- User authentication with JWT & Google OAuth (sign up, sign in, sign out, Google OAuth)
+- User roles (Admin/User) with protected routes
+- Create, edit, and delete blog posts (admin only)
+- Rich text editor for posts (TinyMCE)
+- Image upload via Cloudinary
+- Dynamic category management (admin only)
+- Comment system with likes, edit, and delete
+- Responsive UI with dark/light mode
+- Search and filter posts by keyword, category, and sort order
+- Admin dashboard for managing users, posts, comments, and categories
+- Modern UI with gradients, animations, and professional design
+
 
 ## Tech Stack
-**Frontend:** React, Redux, TailwindCSS, Flowbite  
-**Backend:** Node.js, Express.js, JWT, Google OAuth  
-**Database:** MongoDB (Mongoose ODM)  
-**Image Hosting:** Cloudinary  
-**Email Service:** Brevo  
-**Deployment:** Render (backend), Vercel/Netlify (frontend)
+- **Frontend:** React, Vite, Tailwind CSS, Flowbite React, Redux Toolkit, TinyMCE
+- **Backend:** Node.js, Express.js, MongoDB (Mongoose)
+- **Authentication:** JWT, bcrypt, Google OAuth
+- **Image Upload:** Cloudinary
+- **State Management:** Redux Toolkit, redux-persist
+- **Image Hosting:** Cloudinary
+- **Email Service:** Brevo
+
+## Notable Directories & Files
+
+- `api/routes/` — All backend API routes (users, posts, comments, categories, auth, contact)
+- `api/controllers/` — Logic for each API endpoint
+- `api/models/` — Mongoose models for User, Post, Comment, Category
+- `client/src/pages/` — Main React pages (Home, About, Projects, Dashboard, etc.)
+- `client/src/components/` — Reusable UI components (Header, Footer, PostCard, etc.)
+- `client/src/redux/` — Redux store and slices for user and theme
+- `client/tailwind.config.js` — Tailwind CSS configuration
 
 
-## Installation & Setup
+## ⚙️ Installation & Setup  
+###  1. Prerequisites  
 
-1. Clone the repo:
-   ```bash
-   git clone https://github.com/username/mern-blog.git
-   cd mern-blog
-   ```
+- Node.js v18+ (required for Vite & modern dependencies)  
+- MongoDB Atlas cluster (or a local MongoDB instance)  
+- A Cloudinary account for image uploads  
+- A Firebase project (only needed if you want to test Google OAuth)  
+- A Brevo account (for email notifications)
+- TinyMCE API key (for the rich text editor used in blog posts)
 
-2. Installation dependencies 
-   ```bash
-   cd client && npm install
-   cd ../server && npm install
-   ```
+###  2. Clone the Repository  
+```bash
+git clone https://github.com/username/mern-blog.git
+cd mern-blog
+```
+###  3. Install Dependencies  
 
-3. Create a .env file in the server folder and add:
-   ```bash
-   MONGO_URI=your_mongodb_url
-   JWT_SECRET=your_secret_key
-   CLOUDINARY_CLOUD_NAME=xxxx
-   CLOUDINARY_API_KEY=xxxx
-   CLOUDINARY_API_SECRET=xxxx
-   BREVO_API_KEY=xxxx
-   ```
+Install backend and frontend dependencies:  
 
-4.Start the dev servers:
-## backend
-   ```bash
-      cd server && npm run dev
-   ```
-## frontend
-   ```bash
-   cd client && npm start
-   ```
+```bash
+# Backend
+cd api
+npm install
 
-###  **Usage / Demo Instructions**
-- How to test as an admin vs. normal user.
-📖 Usage
+# Frontend
+cd ../client
+npm install
+```
+All required packages (Express, Mongoose, Vite, TailwindCSS, Flowbite, Redux Toolkit, etc.) are already included in package.json. Running npm install will fetch everything — no manual setup needed.
 
-Register a new account or sign in with Google.
+###  4. Configure Environment Variables  
+Backend (/api/.env)  
 
-To access the admin dashboard, log in with an admin account (credentials provided in seed data or manually via MongoDB).
+```env
+PORT=3000
+MONGO_URI=your_mongodb_connection_string
+SECRET=your_jwt_secret
 
-Create, edit, and manage posts, categories, comments, and users.
+BREVO_API_KEY=your_brevo_api_key
+EMAIL_SENDER=your_verified_sender_email
+EMAIL_RECEIVER=your_email_for_notifications
+SEND_AUTOREPLY=true
+```
+Frontend (/client/.env)  
+
+```env
+VITE_FIREBASE_API_KEY=your_firebase_api_key
+VITE_CLOUDINARY_UPLOAD_URL=https://api.cloudinary.com/v1_1/<cloud_name>/image/upload
+VITE_CLOUDINARY_UPLOAD_PRESET=your_upload_preset
+VITE_EDITOR_KEY=your_tinymce_editor_api_key
+```
+
+
+### 5. Start Development Servers  
+
+In two terminals:  
+Start backend
+```env
+
+cd api
+npm run dev
+```
+Start frontend
+```env
+
+cd client
+npm run dev
+```
+Backend runs on http://localhost:3000
+Frontend runs on http://localhost:5173
+
+
+### 6. Demo Admin Account  
+
+To explore admin features without manual DB setup, you can log in with:  
+
+Email: admin@hotmail.com  
+Password: admin123  
+
+⚠️ Note: This demo account is for testing only. Some destructive actions (like deleting users or categories) may affect functionality.  
+
+
+### 7. Optional (Production Build)  
+
+If you want to build the project for production:  
+
+Backend + Frontend build
+```bash
+npm run build
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## 🔗 Links
 
